@@ -18,7 +18,7 @@ function bubbleSort(arr) {
   }
   return arr;
 }
-bubbleSort(arr);
+//bubbleSort(arr);
 
 //Быстрая сортировка - Бинарный поиск
 
@@ -34,9 +34,9 @@ function quickSort(arr) {
   }
   return quickSort(a).concat(p, quickSort(b));
 }
-quickSort(arr);
+//quickSort(arr);
 
-const arr = [-1, 0, 1, 2, 3, 4, 6, 100, 10000];
+//const arr = [-1, 0, 1, 2, 3, 4, 6, 100, 10000];
 
 function binarySearchIterationMethod(arr, i) {
   let left = 0;
@@ -58,7 +58,7 @@ function binarySearchIterationMethod(arr, i) {
   return -1;
 }
 
-binarySearchIterationMethod(arr, 100); // 7
+//binarySearchIterationMethod(arr, 100); // 7
 
 function binarySearchRecursiveMethod(arr, i, left = 0, right = arr.length - 1) {
   if (left > right) return -1;
@@ -74,7 +74,37 @@ function binarySearchRecursiveMethod(arr, i, left = 0, right = arr.length - 1) {
   }
 }
 
-binarySearchRecursiveMethod(arr, 5); // -1
+//binarySearchRecursiveMethod(arr, 5); // -1
+
+const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+function binarySearch(val, arr) {
+  let min = 0;
+  let max = arr.length - 1;
+
+  while (min <= max) {
+
+    console.log('try again');
+    
+    const middle = min + Math.floor((max - min) / 2);
+
+    if (val === arr[middle]) {
+      return middle;
+    }
+
+    if (val < arr[middle]) {
+      max = middle - 1;
+    } else {
+      min = middle + 1;
+    }
+  }
+  return -1
+}
+
+
+
+console.log(binarySearch(7, arr));
+
 
 // Массив Эффективность(«О» большое):
 
