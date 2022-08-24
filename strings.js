@@ -1,10 +1,10 @@
 //Поменять регистр букв четных и не четных в строке
 
-function toWeirdCase(string){
+function toWeirdCase(string) {
     let arrFromStr = string.split(' ').map(item => item.split('')).map((item) =>
         item.map((char, index) => index % 2 === 0 ? char.toUpperCase() : char.toLowerCase()));
     let newArr = arrFromStr.map((subarr) => subarr.join('')).join(' ');
-   
+
     console.log(newArr); //StRiNg ToWeL
 }
 // toWeirdCase('String towel');
@@ -78,7 +78,7 @@ function wordCount(str) { // делим строку на масив элеме�
     for (let i = 0; i < wordList.length; i++) {
         if (wordList[i].length > theLongest.length) {
             theLongest = wordList[i];
-        } 
+        }
         console.log(`the longest word is "${theLongest}"`);
     }
 }
@@ -119,7 +119,7 @@ function vigenereEncode(text, key) {
             let shift = key.charCodeAt(i) - codeA; // определяем на сколько сдвинуть
 
             result.push(
-                String.fromCharCode( codeA + (letterIndex + shift) % abcCount )
+                String.fromCharCode(codeA + (letterIndex + shift) % abcCount)
             );
         }
     }
@@ -129,20 +129,20 @@ function vigenereEncode(text, key) {
 
 
 function vigenereDecode(text, key) {
-    let coefficient = Math.ceil(text.length / key.length); 
+    let coefficient = Math.ceil(text.length / key.length);
     key = key.repeat(coefficient);
 
-    let codeA = 'A'.charCodeAt(0); 
-    let abcCount = 26; 
+    let codeA = 'A'.charCodeAt(0);
+    let abcCount = 26;
 
-    let result = []; 
+    let result = [];
 
     for (let i = 0; i < text.length; i++) {
         if (text[i] === ' ') {
             result.push(text[i]);
         } else {
             let letterIndex = text.charCodeAt(i) - codeA;
-            let shift = key.charCodeAt(i) - codeA; 
+            let shift = key.charCodeAt(i) - codeA;
 
             result.push(
                 String.fromCharCode(codeA + (letterIndex - shift + abcCount) % abcCount)
@@ -168,42 +168,42 @@ let decodedText = vigenereDecode(secretText, key)
 //morse-decoder
 
 const MORSE_TABLE = {
-    '.-':     'a',
-    '-...':   'b',
-    '-.-.':   'c',
-    '-..':    'd',
-    '.':      'e',
-    '..-.':   'f',
-    '--.':    'g',
-    '....':   'h',
-    '..':     'i',
-    '.---':   'j',
-    '-.-':    'k',
-    '.-..':   'l',
-    '--':     'm',
-    '-.':     'n',
-    '---':    'o',
-    '.--.':   'p',
-    '--.-':   'q',
-    '.-.':    'r',
-    '...':    's',
-    '-':      't',
-    '..-':    'u',
-    '...-':   'v',
-    '.--':    'w',
-    '-..-':   'x',
-    '-.--':   'y',
-    '--..':   'z',
-    '.----':  '1',
-    '..---':  '2',
-    '...--':  '3',
-    '....-':  '4',
-    '.....':  '5',
-    '-....':  '6',
-    '--...':  '7',
-    '---..':  '8',
-    '----.':  '9',
-    '-----':  '0',
+    '.-': 'a',
+    '-...': 'b',
+    '-.-.': 'c',
+    '-..': 'd',
+    '.': 'e',
+    '..-.': 'f',
+    '--.': 'g',
+    '....': 'h',
+    '..': 'i',
+    '.---': 'j',
+    '-.-': 'k',
+    '.-..': 'l',
+    '--': 'm',
+    '-.': 'n',
+    '---': 'o',
+    '.--.': 'p',
+    '--.-': 'q',
+    '.-.': 'r',
+    '...': 's',
+    '-': 't',
+    '..-': 'u',
+    '...-': 'v',
+    '.--': 'w',
+    '-..-': 'x',
+    '-.--': 'y',
+    '--..': 'z',
+    '.----': '1',
+    '..---': '2',
+    '...--': '3',
+    '....-': '4',
+    '.....': '5',
+    '-....': '6',
+    '--...': '7',
+    '---..': '8',
+    '----.': '9',
+    '-----': '0',
 };
 
 let expr = '0000101110000011111100000010110000111010**********00000000110000111111**********00101111100000101110000011111100001111100000101110000000101100000011110000001111000000101000000011100000111110';
@@ -222,7 +222,7 @@ function decode(expr) {
         morzArray.push(item.replace(/11/g, '-').replace(/10/g, '.').replace(/0/g, ''));
     });
 
-    
+
     for (let j = 0; j < morzArray.length; j++) {
         let currentSymbol = morzArray[j];
         if (currentSymbol === '**********') {
@@ -230,7 +230,7 @@ function decode(expr) {
         } else {
             char = MORSE_TABLE[currentSymbol];
         };
-        
+
         str = str + char;
 
     }
@@ -249,4 +249,6 @@ decode(expr);
 //['.-.', '---', '.-', '-..', '**********', '-', '---', '**********', '.--.', '.-.', '---', '--.', '.-.', '.-', '--', '--', '..', '-.', '--.']
 
 //final result - road to programming
- 
+
+
+
