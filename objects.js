@@ -9,11 +9,18 @@ let userInfo = { // литерал объекта
         country: 'Ukraine',
     },
     // значением свойства может быть функция
-    showInfo: function () {
+   /* showInfo: function () {
+        console.log(`${this.name}, ${this.age} лет. Адрес: ${userInfo.adress.country}, ${userInfo.adress.city}`);
+    },*/
+
+    showInfo() {//более короткая запись
         console.log(`${this.name}, ${this.age} лет. Адрес: ${userInfo.adress.country}, ${userInfo.adress.city}`);
     },
+
 }; 
-console.log(userInfo.showInfo()); //Tatiana, 30 лет. Адрес: Ukraine, Chernivtsy
+
+userInfo.showInfo(); //Tatiana, 30 лет. Адрес: Ukraine, Chernivtsy
+
 // console.log(userInfo);// вывести весь объект и все его содержимое
 // console.log(userInfo.name);//вывести отдельно значение ключа
 userInfo['learns javascript'] = true;// добавдяем новые свойства если составное в [''], если одно слово, можно через точку.
@@ -63,6 +70,11 @@ console.log(Object.keys(userInfo));// возвращает массив ключ
 for (let key in userInfo) {  // значения ключей
 //   console.log(userInfo[key]);//Tatiana, {city: 'Chernivtsy', country: 'Ukraine'},  male, {univercity: 'ЧНУ', faculty: 'foreign langeages'}
 }
+
+if ('name' in userInfo) {// оператор in проверяем наличие свойства в объекте
+    console.log(userInfo.name)//Tatiana
+}
+
 
 console.log(Object.values(userInfo));// возвращает массив значений ['Tatiana', {…}, ƒ, true, 'male', {…}]
 
@@ -143,7 +155,5 @@ function multiplyNumeric(menu) {
 }
 //multiplyNumeric(menu);
 //console.log(menu); //{width: 400, height: 600, title: 'My menu'}
-
-
 
 
