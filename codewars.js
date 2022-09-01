@@ -47,3 +47,18 @@ function toHex(d) {
     if(d > 255 ) {return "FF";}
     return  ("0"+(Number(d).toString(16))).slice(-2).toUpperCase()
 }
+
+//Highest and Lowest
+function highAndLow(numbers){
+    let arr = numbers.split(' ');
+    let newArr = [];
+    newArr.push(Math.max(...arr));
+    newArr.push(Math.min(...arr));
+    return newArr.join(' ');
+};
+
+//Disemvowel Trolls
+function disemvowel(str) {
+  str = str.replace(/[aeiou]/gi, '');
+  return str;
+}

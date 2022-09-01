@@ -251,4 +251,7 @@ decode(expr);
 //final result - road to programming
 
 
+//Удаление символов в JavaScript
+//https://snipp.ru/jquery/remove-symbols-js
+//str = str.replace(/[aeiouy]/gi, '')
 

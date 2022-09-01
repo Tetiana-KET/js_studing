@@ -83,3 +83,15 @@ function isSimple(num) {
 
 // simple = isSimple(24);
 // console.log(`Is ${24} simple - ${simple}`);//Is 24 simple - false
+
+// нАЙТИ МИНИМАЛЬНОЕ И МАКСИМАЛЬНОЕ ЧИСЛО
+
+function highAndLow(numbers){
+    let arr = numbers.split(' ');
+    let newArr = [];
+    newArr.push(Math.max(...arr));
+    newArr.push(Math.min(...arr));
+    console.log(newArr);
+    //return newArr;
+};
+highAndLow("1 2 -3 4 5");
