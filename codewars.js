@@ -34,7 +34,7 @@ function rgb(r, g, b) {
     }
   console.log(hex);
 }
-// rgb(0, 0, 0);//000000
+//rgb(0, 0, 0);//000000
 // rgb(300, 150, -20);//FF9600
 
 // Другой вариант
@@ -62,3 +62,48 @@ function disemvowel(str) {
   str = str.replace(/[aeiou]/gi, '');
   return str;
 }
+
+//Isograms
+
+function isIsogram(str){
+  let arr = str.toLowerCase().split('');
+  let isogran = new Set(arr);
+  if (isogran.size == arr.length) { 
+    return true
+  }
+  return false;
+}
+
+//console.log(isIsogram("isograAm"));
+
+//Digits explosion
+
+function explode(s) {
+  if (s === 0) {
+    return "";
+  }
+  let arr = s.split('');
+  let newArr = arr.map((item) => item.repeat([item]));
+
+  return newArr.join('');
+}
+
+function explode(s) {
+  return s.split("").map((e) => e.repeat(+e)).join("");
+}
+
+console.log(explode("1203"));
+
+//Handshake problem
+
+function handshake(n) {
+  // when n becomes 0 that
+  // means all the persons
+  // have done handshake
+  // with other
+  if (n === 0)
+    return 0;
+  else
+    return n - 1 + handshake(n - 1);
+}
+console.log(handshake(6));
