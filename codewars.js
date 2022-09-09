@@ -96,7 +96,7 @@ console.log(explode("1203"));
 
 //Handshake problem
 
-function handshake(n) {
+function handshake(n) {// amount of persons is given. should find an amount of handshakes
   // when n becomes 0 that
   // means all the persons
   // have done handshake
@@ -107,3 +107,26 @@ function handshake(n) {
     return n - 1 + handshake(n - 1);
 }
 console.log(handshake(6));
+
+//handshakes are given/ need to find out an amount of people needed to perform it
+function getParticipants(handshakes){
+  if(handshakes === 0) return 0;
+
+  let result = 0;
+  let sum = 0
+
+  while(handshakes > sum) {
+    sum = result * (result + 1) / 2;
+
+    result++;
+  }
+
+  return result;
+}
+console.log(getParticipants(6));
+
+
+
+
+//ARRAYS
+
