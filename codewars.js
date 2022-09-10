@@ -115,7 +115,7 @@ function getParticipants(handshakes){
   let result = 0;
   let sum = 0
 
-  while(handshakes > sum) {
+  while(sum < handshakes) {
     sum = result * (result + 1) / 2;
 
     result++;
@@ -123,10 +123,14 @@ function getParticipants(handshakes){
 
   return result;
 }
-console.log(getParticipants(6));
+console.log(getParticipants(36));
 
+//Duplicate Encoder
 
+function duplicateEncode(word){
+    console.log(word.toLowerCase())
+}
 
-
+duplicateEncode(Word)
 //ARRAYS
 
