@@ -92,7 +92,7 @@ function explode(s) {
   return s.split("").map((e) => e.repeat(+e)).join("");
 }
 
-console.log(explode("1203"));
+//console.log(explode("1203"));
 
 //Handshake problem
 
@@ -106,7 +106,7 @@ function handshake(n) {// amount of persons is given. should find an amount of h
   else
     return n - 1 + handshake(n - 1);
 }
-console.log(handshake(6));
+//console.log(handshake(6));
 
 //handshakes are given/ need to find out an amount of people needed to perform it
 function getParticipants(handshakes){
@@ -123,7 +123,7 @@ function getParticipants(handshakes){
 
   return result;
 }
-console.log(getParticipants(36));
+//console.log(getParticipants(36));
 
 //Duplicate Encoder
 
@@ -131,6 +131,78 @@ function duplicateEncode(word){
     console.log(word.toLowerCase())
 }
 
-duplicateEncode(Word)
-//ARRAYS
+// duplicateEncode(Word)
+
+//Which color is the brightest?
+// You are given a list of colors in 6 - digit hexidecimal notation #RRGGBB.
+// Return the brightest of these colors!
+// One of the ways to determine brightness of a color is to find the value V of the alternative HSV(Hue, Saturation, Value) 
+// color model.Value is defined as the largest component of a color:
+
+// V = max(R,G,B)
+
+function brightest(colors){
+  let colorIndex = 0, maxValue = 0;
+  for (let i = 0; i < colors.length; i++) {
+    let color = colors[i];
+    let r = parseInt(color.slice(1, 3), 16),
+      g = parseInt(color.slice(3, 5), 16),
+      b = parseInt(color.slice(5, 7), 16);
+    let value = Math.max(r, g, b);
+    if (value > maxValue) {
+      maxValue = value;
+      colorIndex = i;
+    }
+  }
+  return colors[colorIndex];
+}
+
+//console.log(brightest(["#001000", "#000000"]));
+
+
+//N-th Fibonacci
+// write me a function that when given a number (n) returns the n-th number in the Fibonacci Sequence.
+
+// For example:
+
+//    nthFibo(4) == 2
+// Because 2 is the 4th number in the Fibonacci Sequence.
+
+function nthFibo(n) {
+  const fiboArr = [0, 1];
+
+  if (n < 2) {
+     return `${fiboArr[n]}, ${n+1}th Fibo`;
+  };
+
+  for (let i = 2; i <= n; i++){
+    const prevNum1 = fiboArr[i - 1];
+    const prevNum2 = fiboArr[i - 2];
+    fiboArr.push(prevNum1 + prevNum2);
+  };
+
+  console.log(fiboArr);
+  return `${fiboArr[n - 1]}, ${n}th Fibo`;
+};
+//console.log(nthFibo(4));
+
+
+/* Возвращает не индекс, а позицию по счету, начиная с 1
+function nthFibo(n) {
+  
+  const fiboArr = [0, 1];
+  
+ if (n < 3) {
+   return fiboArr[n-1]
+ };
+  
+  for (let i = 2; i <= n; i++){
+    const prevNum1 = fiboArr[i - 1];
+    const prevNum2 = fiboArr[i - 2];
+    fiboArr.push(prevNum1 + prevNum2);
+  }
+  return fiboArr[n - 1]; 
+};*/
+  
+
 
