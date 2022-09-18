@@ -335,7 +335,7 @@ function checkOrder(str, bracketsConfig) {
   const BRACKETS_PAIR = {};
 
   bracketsConfig.forEach(element => {
-    BRACKETS_PAIR[`${element[1]}`] = `${element[0]}`;//второй элемент масива - становиться ключок, первый - значением
+    BRACKETS_PAIR[`${element[1]}`] = `${element[0]}`;//второй элемент масива - становиться ключом, первый - значением
   });
 
   let stack = [];

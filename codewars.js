@@ -239,4 +239,32 @@ function last(a) {return a[a.length - 1]}
 
 function init(a) {return a.slice(0, -1)}
 
-function tail(a) {return a.slice(1)}
+function tail(a) { return a.slice(1) }
+
+//Duplicate Encoder
+/*The goal of this exercise is to convert a string to a new string where each character
+in the new string is "(" if that character appears only once in the original string,
+or ")" if that character appears more than once in the original string. 
+Ignore capitalization when determining if a character is a duplicate.*/
+
+function duplicateEncode(word) {
+  let obj = {};
+  let letter = word.toLowerCase().split('');
+  for (let i = 0; i < letter.length; i++) {
+    let objKey = letter[i];//ключем будет буква
+    if (obj[objKey] === undefined) {//если этот ключ еще не определен, значит такая буква еще не встречалась
+      obj[objKey] = 1;// присваиваем ключу значение 1 (будет считать буквы)
+    } else {//если не неандефайнд, значит эта буква уже встречалась
+      obj[objKey] += 1//прибавляем к предыдушему значению ключа 1
+    }
+  };
+// console.log(obj);//{r: 1, e: 3, c: 1, d: 1}
+  let result = letter.map(function (letter) {
+    return obj[letter] === 1 ? '(' : ')';//проходимся по масиву, подставляем
+  }).join('');//каждую букву из массива как ключ объекта
+
+  return result;
+    
+  
+}
+//console.log(duplicateEncode("recede"));//()()()
