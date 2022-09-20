@@ -357,9 +357,25 @@ function checkOrder(str, bracketsConfig) {
 
 }
 
+//Развернуть вложенности массива 
+function deepArr(a){
+    let newArray = a.flat(Infinity);
+    console.log(newArray);
+}
+// deepArr([1, 2, [3, 4, [5]]]);// [1, 2, 3, 4, 5]
 
+/*var result = arr.reduce(function(sum, current) {
+  return sum + current;
+}, 0);*/
 
+function deepCount(a){
+    return a.reduce((acc, el) => {
+        return acc + (Array.isArray(el) ? deepCount(el) : 0);//если элемент масив, возвращает true => 1 к асс добавляем 1 
+        //и запускаем рекурсивно функцию для этого элемента
+   }, a.length);//, a.length - это аккумулятор, равен длине массива
+}
 
+//console.log(deepCount([1, 2, [3, 4, [5]]]));//7
 
 
 
