@@ -19,7 +19,7 @@ let userInfo = { // литерал объекта
 
 }; 
 
-userInfo.showInfo(); //Tatiana, 30 лет. Адрес: Ukraine, Chernivtsy
+//userInfo.showInfo(); //Tatiana, 30 лет. Адрес: Ukraine, Chernivtsy
 
 // console.log(userInfo);// вывести весь объект и все его содержимое
 // console.log(userInfo.name);//вывести отдельно значение ключа
@@ -64,7 +64,7 @@ for (let key in userInfo) {
     //console.log(key);//name, adress, sex, education // ключи
 }
 
-console.log(Object.keys(userInfo));// возвращает массив ключей ['name', 'adress', 'showInfo', 'learns javascript', 'sex', 'education']
+//console.log(Object.keys(userInfo));// возвращает массив ключей ['name', 'adress', 'showInfo', 'learns javascript', 'sex', 'education']
 
 
 for (let key in userInfo) {  // значения ключей
@@ -72,17 +72,17 @@ for (let key in userInfo) {  // значения ключей
 }
 
 if ('name' in userInfo) {// оператор in проверяем наличие свойства в объекте
-    console.log(userInfo.name)//Tatiana
+    //console.log(userInfo.name)//Tatiana
 }
 
 
-console.log(Object.values(userInfo));// возвращает массив значений ['Tatiana', {…}, ƒ, true, 'male', {…}]
+//console.log(Object.values(userInfo));// возвращает массив значений ['Tatiana', {…}, ƒ, true, 'male', {…}]
 
-console.log(Object.entries(userInfo)); // возвращает матрицу, где каждая строка - это масив из ключ - значение
+//console.log(Object.entries(userInfo)); // возвращает матрицу, где каждая строка - это масив из ключ - значение
 
 const entries = Object.entries(userInfo);
 for (const [key, val] of entries) {
-    console.log(`${key} : ${val}`);
+  //  console.log(`${key} : ${val}`);
 }
 
 
@@ -157,3 +157,29 @@ function multiplyNumeric(menu) {
 //console.log(menu); //{width: 400, height: 600, title: 'My menu'}
 
 
+//You are given a an object and should return an array
+//Return the list of languages where your test score is at least 60, in descending order of the results.
+
+function myLanguages(results) {
+    let result = [];
+
+    for (let item in results) {
+        if (results[item] >= 60) {
+            result.push(item);
+        }
+    }
+    console.log(result)
+    return result.sort((a, b) => results[b] - results[a]);
+}
+
+//console.log(myLanguages({ "Java": 10, "Ruby": 80, "Python": 65 }));// ["Ruby", "Python"]
+//console.log(myLanguages({"Hindi" : 60, "Greek" : 71, "Dutch" : 93}));//['Dutch', 'Greek', 'Hindi']
+
+
+//Object.keys(obj) возвращает массив строковых элементов, соответствующих именам перечисляемых свойств
+function myLanguagess(results) {
+  return Object.keys(results).filter(item => results[item] > 59).sort((a,b) => results[b] - results[a]);
+}
+
+console.log(myLanguagess({ "Java": 10, "Ruby": 80, "Python": 65 }));// ["Ruby", "Python"]
+console.log(myLanguagess({"Hindi" : 60, "Greek" : 71, "Dutch" : 93}));//['Dutch', 'Greek', 'Hindi']
