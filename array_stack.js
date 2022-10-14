@@ -230,18 +230,22 @@ function filterArray() {
 
 function stackOnArrayExample() {
     let stack = [];
+    console.log(`stack is empty`, stack);
     stack.push('something');
+    console.log(`now we add to stack - 'something'`, stack);
     stack.push('something else');
+    console.log(`now we add to stack - 'something else'`, stack);
     stack.push('again something');
+    console.log(`now we add to stack - 'again something'`, stack);
 
     console.log(stack);//  ['something', 'something else', 'again something']
 
     while (stack.length) {
         let operation = stack.pop();
-        console.log(stack); // ['something', 'something else']  // ['something'] // []
+        console.log(`now we delete - `, operation, stack); // ['something', 'something else']  // ['something'] // []
     }
 }
-// stackOnArrayExample()
+stackOnArrayExample()
 
 //ПРОВЕРИТЬ ПРАВИЛЬНО ЛИ РАСТАВЛЕНЫ СКОБКИ В СТРОКЕ, КОТОРАЯ ПРИШЛА К НАМ В КАЧЕСТВЕ АРГУМЕНТА.
 
@@ -379,3 +383,42 @@ function deepCount(a){
 
 
 
+/**
+* Implement the Stack with a given interface via array.
+*
+* @example
+* const stack = new Stack();
+*
+* stack.push(1); // adds the element to the stack
+* stack.peek(); // returns the peek, but doesn't delete it, returns 1
+* stack.pop(); // returns the top element from stack and deletes it, returns 1
+* stack.pop(); // undefined
+*
+*/
+
+//the constructor function does not require the "function" keyword. 
+//This is true for all functions declared inside the class. 
+// functions declared inside a class are referred to as methods 
+// and are accessible from outside of the class by default.
+// The peek method, just like the method name suggests, 
+// returns the element on top of the stack without affecting the stack.
+
+class Stack {
+
+    constructor () {
+      this.items = [];
+    }
+  
+    push(element) {
+      this.items.push(element);
+    }
+  
+    pop() {
+      return this.items.pop();
+    }
+  
+    peek() {
+      
+      return this.items[this.items.length - 1];
+    }
+  }

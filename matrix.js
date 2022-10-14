@@ -27,6 +27,8 @@ function showMatrix(matrix) {
 // 0 3 6 9
 // 6 8 0 2
 
+// ГЛАВНАЯ     Д И А Г О Н А Л Ь 
+
 function showMainDiag(matrix) {
     console.log('main diagonal elements -');
     for (let i = 0; i < matrix.length; i++) {
@@ -39,7 +41,7 @@ function showMainDiag(matrix) {
 
 function showSideDiag(matrix) { 
     console.log('side diagonal elements -');
-    let n = matrix.length;
+    let n = matrix.length;// число строк. так как матрица квадратная, равно числуу столбцов
     for (let i = 0; i < n; i++) {
         console.log(matrix[i][n-1-i]); //n-1 єто длина строки. -i чтобі двигаться в обратном порядке
     }
