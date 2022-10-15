@@ -237,7 +237,7 @@ function decode(expr) {
 
     console.log(str);
 }
-decode(expr);
+//decode(expr);
 
 // result after arr.push(expr.substr(i, 10));
 //['0000101110', '0000111111', '0000001011', '0000111010', '**********', '0000000011', '0000111111', '**********', '0010111110', '0000101110', '0000111111', '0000111110', '0000101110', '0000001011', '0000001111', '0000001111', '0000001010', '0000001110', '0000111110']
@@ -255,3 +255,24 @@ decode(expr);
 //https://snipp.ru/jquery/remove-symbols-js
 //str = str.replace(/[aeiouy]/gi, '')
 
+
+/**
+ * Given two strings, find the number of common characters between them.
+ *
+ * @param {String} s1
+ * @param {String} s2
+ * @return {Number}
+ *
+ * @example
+ * For s1 = "aabcc" and s2 = "adcaa", the output should be 3
+ * Strings have 3 common characters - 2 "a"s and 1 "c".
+ */
+
+function getCommonCharacterCount(s1, s2) {
+    let count = 0;
+    for (let i in s1) {
+        s2.includes(s1[i]) ? count++ : false;
+    }
+    return count;
+}
+console.log(getCommonCharacterCount("aabcc", "adcaa"));
