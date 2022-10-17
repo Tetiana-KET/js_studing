@@ -95,3 +95,45 @@ function highAndLow(numbers){
     //return newArr;
 };
 highAndLow("1 2 -3 4 5");
+
+/** НАЙТИ СУММУ ЧИСЛА ДО 1 ЦИФРЫ
+ * Given a number, replace this number with
+ * the sum of its digits until we get to a one digit number.
+ *
+ * @example
+ * For 100, the result should be 1 (1 + 0 + 0 = 1)
+ * For 91, the result should be 1 (9 + 1 = 10, 1 + 0 = 1)
+ */
+function getSumOfDigits(n) {
+    if (n == 0) {return 0};
+  
+    return (n % 9 == 0) ? 9 : (n % 9);
+}
+// console.log(getSumOfDigits(15));
+
+/*How does the above logic works? 
+
+* To check if a number is divisible by 9, add the digits of the number and check if the sum is divisible by 9 or not. 
+* If yes, is the case,  the number is divisible by 9, otherwise, it’s not.
+* let’s take 27  i.e (2+7 = 9) hence divisible by 9.
+* If a number n is divisible by 9, then the sum of its digit until the sum becomes a single digit is always 9. 
+* * For example, 
+* Let, n = 2880 
+* Sum of digits = 2 + 8 + 8 = 18: 18 = 1 + 8 = 9
+*/
+
+function getSumOfDigits(n) {
+    let sum = 0;
+    while (n) {
+        sum = sum + (n % 10);
+        n = Math.floor(n/10);
+    };
+
+    if (sum < 10) {
+        return sum
+    } else {
+        sum = getSumOfDigits(sum);
+    }
+    return sum;
+}
+console.log(getSumOfDigits(288));

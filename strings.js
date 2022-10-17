@@ -255,7 +255,7 @@ function decode(expr) {
 //https://snipp.ru/jquery/remove-symbols-js
 //str = str.replace(/[aeiouy]/gi, '')
 
-
+// ПОСЧИТАТЬ КОЛИЧЕСТВО ОБИНАКОВЫХ БУКЫ В СТРОКАХ
 /**
  * Given two strings, find the number of common characters between them.
  *
@@ -268,11 +268,47 @@ function decode(expr) {
  * Strings have 3 common characters - 2 "a"s and 1 "c".
  */
 
-function getCommonCharacterCount(s1, s2) {
+ function getCommonCharacterCount(s1, s2) {
     let count = 0;
-    for (let i in s1) {
-        s2.includes(s1[i]) ? count++ : false;
+    const arr = s2.split('');//lелаем массив из 2й строки
+    for(char of s1){ //проходим циклом по первой строке
+      let idx = arr.findIndex(el => el === char);//находим индекс символа в s2, который совпадает с текущей буквой в s1
+        if(idx >= 0){
+            count++;
+            arr.splice(idx, 1);//вырезаем из массива эту букву, чтобы не считать ее дваджы
+            //console.log(arr);
+        }
     }
     return count;
+  }
+  
+//console.log(getCommonCharacterCount("aabcc", "adcaa"));
+
+/**  ЗАКОДИРОВАТЬ СТРОКУ 
+ * Given a string, return its encoding version.
+ *
+ * @example
+ * For aabbbc should return 2a3bc
+ *
+ */
+function encodeLine(s) {
+
+    let result = '';
+    let count =1;
+
+    //loop through all the letters of the string and compare each pair of two consecutive letters:
+    for (let i = 0; i < s.length; i++) {
+
+        if (s[i] === s[i+1]) {
+            count++;
+        } else {// if the current letter s[i] and the next letter s[i+1] is different
+            result = result + (count + s[i]);
+            count = 1;//We also need to reset count
+        }
+        
+    }
+    return result.replace(/1/g, '');//replace(/1/g, ''); - удаляет единичку
 }
-console.log(getCommonCharacterCount("aabcc", "adcaa"));
+     
+
+console.log(encodeLine("aabbbc"));//2a3bc(2a3bc)
