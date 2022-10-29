@@ -1,3 +1,21 @@
+//Заглавная буква каждого слова из строки
+
+//Метод substring(1, 3) извлекает символы, начиная с индекса 1 до 3, но не включая его или до конца, если указан только 1 индекс
+
+function firstLetterToUpperCase() {
+    
+    const str = "How can mirrors be real if our eyes aren't real";
+    const words = str.split(' ');
+    
+    for (let i = 0; i < words.length; i++) {
+        words[i] = words[i][0].toUpperCase() + words[i].substring(1);
+    }
+
+    return words.join(' ');
+};
+//console.log(firstLetterToUpperCase());//How Can Mirrors Be Real If Our Eyes Aren't Real
+
+
 //Поменять регистр букв четных и не четных в строке
 
 function toWeirdCase(string) {
@@ -237,7 +255,7 @@ function decode(expr) {
 
     console.log(str);
 }
-//decode(expr);
+// tringdecode(expr);
 
 // result after arr.push(expr.substr(i, 10));
 //['0000101110', '0000111111', '0000001011', '0000111010', '**********', '0000000011', '0000111111', '**********', '0010111110', '0000101110', '0000111111', '0000111110', '0000101110', '0000001011', '0000001111', '0000001111', '0000001010', '0000001110', '0000111110']
