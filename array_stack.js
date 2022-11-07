@@ -1,4 +1,81 @@
+{
+//МЕТОДЫ МАСССИВА
+//УДАЛИТЬ ЭЛЕМЕНТ
+let arr = ['Ivan', 'age', 'Vasia', 'name', 'Nina'];
+let result = arr.splice(1, 2); // начиная с позиции 1 удаляем 2 элемента
+
+//ЗАМЕНИТЬ ЭЛЕМЕНТ
+
+arr.splice(0, 1, 'New Value'); // Начиная с 0 позиции, заменяем 1 элемент на New Value
+
+//ДОБАВИТЬ ЭЛЕМЕНТ В СЕРЕДИНЕ
+
+arr.splice(2, 0, 'New Value', 'New Value');// начиная со второй позиции, начего не удаляем, добавляем новые значения
+
+//  СКОПИРОВАТЬ ЧАСТЬ МАССИВА
+
+//let newArr = arr.slice([start], [end]); // копирует в новый массив начиная с [start] до [end] - не включая end
+
+//СКОПИРОВАТЬ ВЕСЬ МАССИВ
+let newArray = arr.slice();
+
+// МЕТОД concat - создает новый массив, в который копирует данные из исходного массива
+// + дополнительные значения
+
+let newArr = arr.concat('editional value', 'editional value');
+}
+
+//find и findIndex ПОИСК В МАССИВЕ ОБЪЕКТОВ с определенным условием
+//возвращает первый элемент, удовлетворяющий условию
+
+{
+    let arr = [
+        { name: 'Ivan', age: 36 },
+        { name: 'Vasia', age: 18 },
+        { name: 'Nina', age: 25 },
+    ]
+
+    let result = arr.find(function (item, index, array) {
+        return item.age === 18;
+    })
+    //let result = arr.find(item => item.age === 18);
+    console.log(result); // {name: 'Vasia', age: 18}
+}
+
+
+//FILTER - ВОЗВРАЩАЕТ МАССИВ ИЗ ВСЕХ ЭЛЕМЕНТОВ УДОВЛЕТВОРЯЮЩИХ УСЛОВИЮ
+{
+    let arr = [
+        { name: 'Ivan', age: 36 },
+        { name: 'Vasia', age: 18 },
+        { name: 'Nina', age: 25 },
+    ]
+
+    let result = arr.filter((item) => item.age > 18);
+    console.log(result); // 2) [{name: 'Ivan', age: 36}, {name: 'Nina', age: 25}]
+
+}
+
+//СОРТИРОВКА МАССИВА
+
+//ARR.SORT()
+//array.sort((a, b) => a-b);
+
+//МЕТОД MAP - вызывает функцию для каждого элемента массива
+// и возвращает массив результатов этой функции
+{
+    let arr = ['Ivan', 'age', 'Vasia', 'name', 'Nina'];
+    let result = arr.map((item) => item[0]);
+
+    console.log(result); //['I', 'a', 'V', 'n', 'N']
+}
+
 let array = [20, 21, 22, 23, 24, 25, 26, 26, 23];
+
+//ПРОВЕРКА НА МАССИВ
+//Array.isArray(array);
+
+console.log(Array.isArray(array));//true
 
 // вывести ВСЕ ЭЛЕМЕНТЫ МАССИВА, перебор массива
 
