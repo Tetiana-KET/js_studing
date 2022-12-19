@@ -54,6 +54,16 @@ let newArr = arr.concat('editional value', 'editional value');
     let result = arr.filter((item) => item.age > 18);
     console.log(result); // 2) [{name: 'Ivan', age: 36}, {name: 'Nina', age: 25}]
 
+    let children = [
+        {name: 'Vasia', age: 18, score: 21},
+        {name: 'Olga', age: 10, score: 20},
+        {name: 'Sergey', age: 17, score: 25},
+        {name: 'Violetta', age: 15, score: 21},
+    ]
+    const excellentStudent = children.filter(person => person.score > 20 && person.age < 18);
+    console.groupCollapsed(excellentStudent); 
+    // {name: 'Sergey', age: 17, score: 25}
+    //{name: 'Violetta', age: 15, score: 21}
 }
 
 //СОРТИРОВКА МАССИВА
@@ -61,7 +71,8 @@ let newArr = arr.concat('editional value', 'editional value');
 //ARR.SORT()
 //array.sort((a, b) => a-b);
 
-//МЕТОД MAP - вызывает функцию для каждого элемента массива
+//МЕТОД MAP - вызывает функцию для каждого элемента массива, 
+//ПОЗВОЛЯЕТ ТРАНСФОРМИРОВАТЬ ДАННЫЕ
 // и возвращает массив результатов этой функции
 {
     let arr = ['Ivan', 'age', 'Vasia', 'name', 'Nina'];
@@ -95,6 +106,28 @@ function goThruoghArray() {
 // element with index 6 is 26
 // element with index 7 is 26
 
+//ПЕРЕБОР МАССИВА FOR .. OF .. FOREACH
+// сразу получаете доступ к самому элементу массива, индекс не доступен
+// НЕ пропускают пустые элементы в массиве
+{
+    let people = [
+        { name: 'Ivan', age: 36 },
+        { name: 'Vasia', age: 18 },
+        { name: 'Nina', age: 25 },
+    ]
+
+    for (let person of people) {
+        console.log(person);
+    }
+    //{name: 'Ivan', age: 36}
+    // {name: 'Vasia', age: 18}
+    // {name: 'Nina', age: 25}
+
+
+    people.forEach(person => console.log(person.age*2)); //72 - 36 - 50
+
+}
+
 // СУММА ВСЕХ ЭЛЕМЕНТОВ В МАССИВЕ
 
 function findSumOfArrayElements() {
@@ -104,9 +137,9 @@ function findSumOfArrayElements() {
     };
     console.log(`SumOfArrayElements = ${SumOfArrayElements}`);
 }
-// array = [1, 10, 35, 15];
-// goThruoghArray(array);
-// findSumOfArrayElements(array);
+array = [1, 10, 35, 15];
+goThruoghArray(array);
+findSumOfArrayElements(array);
 
 // element with index 0 is 1
 // element with index 1 is 10
@@ -120,11 +153,11 @@ function findSumOfArrayElementsWithReduce() {
     let arraySum = array.reduce((previous, item) => previous + item);
     console.log(arraySum);
 }
-// findSumOfArrayElementsWithReduce(array);
+findSumOfArrayElementsWithReduce(array);
 
 // УДАЛИТЬ ПОВТОРЫ ИЗ МАССИВА
 
-// array = [20, 21, 22, 23, 24, 25, 26, 26, 23];
+array = [20, 21, 22, 23, 24, 25, 26, 26, 23];
 function deleteRepeat() {
     let arrayWithoutrepeat = new Set(array);
     console.log(arrayWithoutrepeat);
