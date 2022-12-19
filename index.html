@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="en"> <!-- parentElement для body -->
+  <head> 
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-  </head>
-  <body>
+    <link rel="stylesheet" href="style.css">
+  </head>   <!-- previousElementSibling -->
+  <body> <!--относительно Боди -->
+    <h1> <!-- firstElementChild для body -->
+			<span class="yellow">JavaScript.</span>
+			Браузерное окружение.
+			Работа с <span class="yellow">DOM.</span>
+		</h1>
+		<h3>Урок №13</h3>
+    <script src="dom.js"></script>
+		<!-- <script src="js/script.js"></script> -->
     <script src="array_stack.js"></script>
     <!-- <script src="objects.js"></script> -->
     <!-- <script src="codewars.js"></script> -->
@@ -17,4 +26,5 @@
     <!-- <script src="algorithm.js"></script> -->
     <!-- <script src="scope.js"></script> -->
   </body>
+  <!-- nextElementSibling (null) так как после боди ничего нет -->
 </html>
