@@ -61,7 +61,7 @@ let newArr = arr.concat('editional value', 'editional value');
         {name: 'Violetta', age: 15, score: 21},
     ]
     const excellentStudent = children.filter(person => person.score > 20 && person.age < 18);
-    console.groupCollapsed(excellentStudent); 
+    console.log(excellentStudent); 
     // {name: 'Sergey', age: 17, score: 25}
     //{name: 'Violetta', age: 15, score: 21}
 }
@@ -92,7 +92,7 @@ console.log(Array.isArray(array));//true
 
 function goThruoghArray() {
   for (let i = 0; i < array.length; i++) {
-    console.log(`element with index ${i} is ${array[i]}`);
+    //console.log(`element with index ${i} is ${array[i]}`);
 };
 }
 // goThruoghArray(array);
@@ -130,16 +130,26 @@ function goThruoghArray() {
 
 // СУММА ВСЕХ ЭЛЕМЕНТОВ В МАССИВЕ
 
-function findSumOfArrayElements() {
-    let SumOfArrayElements = 0; 
-    for (let i = 0; i < array.length; i++) {
-        SumOfArrayElements += array[i]; 
-    };
-    console.log(`SumOfArrayElements = ${SumOfArrayElements}`);
+{
+    const array = [1, 10, 35, 15];
+    function findSumOfArrayElements() {
+        let SumOfArrayElements = 0; 
+        for (let i = 0; i < array.length; i++) {
+            SumOfArrayElements += array[i]; 
+        };
+        console.log(`SumOfArrayElements = ${SumOfArrayElements}`);//SumOfArrayElements = 61
+    }
+    
+    goThruoghArray(array);
+    findSumOfArrayElements(array);
+    //the same using МЕТОД Reduce()
+
+    function findSumOfArrayElementsWithReduce() {
+        let arraySum = array.reduce((previous, item) => previous + item);
+        console.log(arraySum);
+    }
+    findSumOfArrayElementsWithReduce(array);
 }
-array = [1, 10, 35, 15];
-goThruoghArray(array);
-findSumOfArrayElements(array);
 
 // element with index 0 is 1
 // element with index 1 is 10
@@ -148,19 +158,30 @@ findSumOfArrayElements(array);
 // SumOfArrayElements = 61
 
 // МЕТОД Reduce()
+{
+    let people = [
+        { name: 'Ivan', age: 36, budget: 5488 },
+        { name: 'Vasia', age: 18, budget: 1200 },
+        { name: 'Nina', age: 25, budget: 3520 },
+    ];
 
-function findSumOfArrayElementsWithReduce() {
-    let arraySum = array.reduce((previous, item) => previous + item);
-    console.log(arraySum);
+    const amount = people.reduce((total, person) => {
+        return total + person.budget
+    }, 0);
+    console.log(amount);//10208
+    // тоже самое, но короче
+    //const amount = people.reduce((total, person) => total + person.budget, 0);
 }
-findSumOfArrayElementsWithReduce(array);
 
 // УДАЛИТЬ ПОВТОРЫ ИЗ МАССИВА
 
-array = [20, 21, 22, 23, 24, 25, 26, 26, 23];
-function deleteRepeat() {
-    let arrayWithoutrepeat = new Set(array);
-    console.log(arrayWithoutrepeat);
+{
+    const array = [20, 21, 20, 22, 21, 23, 24, 25, 26, 26, 23];
+    function deleteRepeat() {
+        let arrayWithoutrepeat = new Set(array);
+        console.log(arrayWithoutrepeat);
+    }
+    deleteRepeat();//Set(7) {20, 21, 22, 23, 24, 25, 26}
 }
 
 // deleteRepeat(array);
