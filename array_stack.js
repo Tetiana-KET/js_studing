@@ -350,8 +350,158 @@ function filterArray() {
 }
 //filterArray();//[11, 13, 15]
 
+// Сумма введённых чисел
+// Напишите функцию sumInput(), которая:
+// Просит пользователя ввести значения, используя prompt и сохраняет их в массив.
+// Заканчивает запрашивать значения, когда пользователь введёт не числовое значение, пустую строку или нажмёт «Отмена».
+// Подсчитывает и возвращает сумму элементов массива.
+// P.S. Ноль 0 – считается числом, не останавливайте ввод значений при вводе «0»
+{
+    function sumInput() {
+        let numbers = [];
+
+        while (true) {
+
+            let value = prompt('Enter an integer', 0);
+
+            if (value === '' || value === null || !isFinite(value)) break;
+
+            numbers.push(+value);
+        }
+
+        let sum = 0;
+
+        for (let number of numbers) {
+            sum += number;
+        }
+        return sum;
+    }
+    // alert(sumInput());
+}
+
+{// Мы можем использовать every для сравнение массивов:
+
+function arraysEqual(arr1, arr2) {
+  return arr1.length === arr2.length && arr1.every((value, index) => value === arr2[index]);
+}
+
+//alert( arraysEqual([1, 2], [1, 2])); // true
+}
+
+//Развертывание вложенных массивов, убрать пустые слоты масива https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/flat
+
+//Напишите функцию camelize(str), которая преобразует строки вида «my-short-string» в «myShortString».
+{
+    function camelize(str) {
+        return str.split('-').map((word, index) => index === 0 ? word : word[0].toUpperCase() + word.slice(1)).join('');
+    }
+    console.log(camelize('my-short-string')); //myShortString
+}
+
+// Напишите функцию filterRange(arr, a, b), которая принимает массив arr, 
+// ищет элементы со значениями больше или равными a и меньше или равными b и возвращает результат в виде массива.
+{
+    function filterRange(arr, a, b) {
+        let filtered = arr.filter(item => a <= item && item <= b);
+        return filtered;
+    }
+    console.log(filterRange([5, 3, 8, 1], 1, 4));//[3, 1]
+}
+// Фильтрация по диапазону "на месте"
+// Напишите функцию filterRangeInPlace(arr, a, b), которая принимает массив arr и удаляет из него все значения кроме тех,
+// которые находятся между a и b. То есть, проверка имеет вид a ≤ arr[i] ≤ b.
+// let arr = [5, 3, 8, 1];
+// filterRangeInPlace(arr, 1, 4); // удалены числа вне диапазона 1..4
+// alert( arr ); // [3, 1]
+{
+    function filterRangeInPlace(arr, a, b) {
+
+        for (let i = 0; i < arr.length; i++) {
+          let value = arr[i];
+      
+          // удалить, если за пределами интервала
+            if (value < a || value > b) {
+                arr.splice(i, 1); //начиная с позиции i, удалить 1 элемент
+                i--;
+            }
+        }
+      return arr;
+    }
+    console.log(filterRangeInPlace([5, 3, 8, 1], 1, 4));//[3, 1]// удалены числа вне диапазона 1..4
+}
+
+//Скопировать и отсортировать массив
+{
+    function copySorted(arr) {
+        return arr.slice().sort();
+    }
+
+    let arr = ["HTML", "JavaScript", "CSS"];
+    let sorted = copySorted(arr);
+
+    console.log(arr);//['HTML', 'JavaScript', 'CSS'] исходный массив не изменен
+    console.log(sorted);//['CSS', 'HTML', 'JavaScript'] отсортированный
+}
+
+//У вас есть массив объектов user, и в каждом из них есть user.name. 
+//Напишите код, который преобразует их в массив имён.
+{
+let vasya = { name: "Вася", age: 25 };
+let petya = { name: "Петя", age: 30 };
+let masha = { name: "Маша", age: 28 };
+
+let users = [ vasya, petya, masha ];
+
+let names = users.map(item => item.name)
+console.log(names);// Вася, Петя, Маша
+// alert( names ); // Вася, Петя, Маша
+}
+
+{
+// Отсортировать пользователей по возрасту
+// Напишите функцию sortByAge(users), которая принимает массив объектов со свойством age и сортирует их по нему.
 
 
+let vasya = { name: "Вася", age: 25 };
+let petya = { name: "Петя", age: 30 };
+let masha = { name: "Маша", age: 28 };
+let misha = { name: "Миша", age: 8 };
+
+let arr = [ vasya, petya, masha, misha, ];
+
+function sortByAge(arr) {
+   return arr.sort((a, b) => a.age > b.age ? 1 : -1)
+};
+console.log(sortByAge(arr));
+}
+
+//Перемешать массив
+{
+    let array = [1, 2, 3, 4 , 5 , 6];
+
+    function shuffle(array) {
+        array.sort(() => Math.random() - 0.5);
+        return array;
+    }
+    console.log(shuffle(array));
+}
+//Тасование Фишера — Йетса. 
+//Суть заключается в том, чтобы проходить по массиву в обратном порядке и менять местами каждый элемент 
+//со случайным элементом, который находится перед ним.
+{
+    function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+}
+
+console.log(`
+
+
+
+//S T A C K`)
 //S T A C K
 
 //---------------------------
@@ -552,4 +702,5 @@ class Stack {
       
       return this.items[this.items.length - 1];
     }
-  }
+
+}
