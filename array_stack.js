@@ -183,6 +183,24 @@ function goThruoghArray() {
     }
     deleteRepeat();//Set(7) {20, 21, 22, 23, 24, 25, 26}
 }
+{
+    //объединить 2 массива, отсортировать и удалить повторы
+    function mergeArrays(arr1, arr2) {
+        const merged = arr1.concat(arr2).sort((a, b) => a - b);
+        const unique = new Set (merged);
+        return [...unique];
+    }
+}
+{
+    function mergeArrays(arr1, arr2) {
+        return Array.from(new Set(arr1.concat(arr2).sort((a,b) => (a-b))));
+    }
+}
+{
+    function mergeArrays(a, b) {
+        return [...new Set(a.concat(b))].sort((a,b)=>a-b);
+    }
+}
 
 // deleteRepeat(array);
 // Set(7) {20, 21, 22, 23, 24, …}
