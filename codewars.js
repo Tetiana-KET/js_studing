@@ -268,3 +268,106 @@ function duplicateEncode(word) {
   
 }
 //console.log(duplicateEncode("recede"));//()()()
+
+// 16+18=214
+
+function add(num1, num2) {//(add(122, 81)
+  num1 = num1.toString().split('').reverse();//['2', '2', '1']
+  num2 = num2.toString().split('').reverse();//['1', '8']
+
+  let count = Math.max(num1.length, num2.length); //3
+  
+  const newArr = [];
+
+  for (let i = count-1; i>=0; i--) {//i=2
+    
+    newArr.push(+(num1[i] || 0) + +(num2[i] || 0));//1+0; 2+8=10; 2+1; 1 - 10 - 3
+  }
+  console.log(newArr);//[1, 10, 3]
+
+  //let result = newArr.reduce((acc, ell) => acc.toString() + ell.toString());
+  //return +result;
+  return +newArr.join(''); 
+}
+//console.log(add(122, 81))//1103
+
+//У вас есть 3 объекта ввода(школьные дневники) со школьными предметами и отметкой
+// вернуть имя ученика, сумма баллов которого самая высокая
+//Если у двух или трех сыновей одинаковые самые высокие оценки, нужно выбрать младшего. 
+{
+ const diary1 = {
+    'algebra': 6,
+    'history': 7,
+    'physics': 8,
+    'geography': 9,
+    'chemistry': 10,
+  };
+
+  const diary2 = {
+    'algebra': 8,
+    'history': 7,
+    'physics': 8,
+    'geography': 9,
+    'chemistry': 10,
+  };
+
+  const diary3 = {
+    'algebra': 8,
+    'history': 7,
+    'physics': 8,
+    'geography': 9,
+    'chemistry': 10,
+  };
+  const ageTable = {
+    'firstSonAge': 14,
+    'secondSonAge': 9,
+    'thirdSonAge': 8
+  };
+
+  function whoseBicycle(diary1, diary2, diary3) {
+    let score1 = 0;
+    let score2 = 0;
+    let score3 = 0;
+
+    for (let key in diary1) {
+      score1 += diary1[key];
+    };
+    for (let key in diary2) {
+      score2 += diary2[key];
+    };
+    for (let key in diary3) {
+      score3 += diary3[key];
+    };
+
+    const firstSon = {
+      name: 'first',
+      score : score1,
+      age : ageTable.firstSonAge,
+    };
+
+    const secondSon = {
+      name: 'second',
+      score : score2,
+      age : ageTable.secondSonAge,
+    };
+
+    const thirdSon = {
+      name: 'third',
+      score : score3,
+      age : ageTable.thirdSonAge,
+    };
+
+    const children = [firstSon, secondSon, thirdSon];
+    const excellentStudent = children.filter(person =>person.score == Math.max(firstSon.score, secondSon.score, thirdSon.score));
+    let result='';
+    if (excellentStudent.length == 1) {
+      result =  excellentStudent[0].name;
+    } else {
+      result = (excellentStudent.sort((a, b) => a.age - b.age))[0].name;
+    }
+    
+    return `'I need to buy a bicycle for my ${result} son.'`;
+  }
+  console.log(whoseBicycle(diary1, diary2, diary3));
+}
+
