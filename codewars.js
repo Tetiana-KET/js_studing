@@ -371,3 +371,48 @@ function add(num1, num2) {//(add(122, 81)
   console.log(whoseBicycle(diary1, diary2, diary3));
 }
 
+//7 kyu Who is the killer?
+
+{
+  const suspectInfo = {
+    'James': ['Jacob', 'Bill', 'Lucas'],
+    'Johnny': ['David', 'Kyle', 'Lucas'],
+    'Peter': ['Lucy', 'Kyle']
+  };
+  const dead  = ['Lucas', 'Bill'];
+
+  function killer(suspectInfo, dead) {
+    for (let suspect in suspectInfo) {
+      if (suspectInfo[suspect].includes(...dead)) {
+        return suspect;
+      }
+    }
+  }
+  console.log(killer(suspectInfo, dead));
+  {
+    function killer(suspectInfo, dead) {
+      return Object.keys(suspectInfo).find(x => dead.every(y => suspectInfo[x].includes(y)))
+    }
+  }
+}
+
+
+{
+  // ЗАМЕНИТЬ ВСЕ ГЛАСНЫЕ НА 1 СОГЛАСНЫЕ И ЦИФРЫ НА 00
+  // Examples:
+  // vowelOne( "abceios" ) // "1001110"
+  // vowelOne( "aeiou, abc" ) // "1111100100"
+  ///[0-9]/gi все цифры
+  ///[aeiou]/gi -* все гласные не зависимо от регистра
+  ////[^0-9]/gi - все НЕ цифры
+
+  function vowelOne(s){
+    return s.replace(/[0-9]/gi, 00).replace(/[aeiou]/gi, 1).replace(/[^0-9]/gi, 00);
+  }
+
+  {
+    function vowelOne(s){
+      return s.replace(/[^aeiou]/gi, 0).replace(/[^\d]/g, 1);
+    }
+  }
+}

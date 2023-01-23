@@ -201,6 +201,12 @@ function goThruoghArray() {
         return [...new Set(a.concat(b))].sort((a,b)=>a-b);
     }
 }
+{ 
+    let str = 'sentence';
+    let arr = [...str];
+    console.log(arr);// ['s', 'e', 'n', 't', 'e', 'n', 'c', 'e']
+    
+}
 
 // deleteRepeat(array);
 // Set(7) {20, 21, 22, 23, 24, …}
@@ -514,6 +520,27 @@ console.log(sortByAge(arr));
     }
   }
 }
+/* СОРТИРОВКА МАССИВА ОБЪЕКТОВ ПО ЧИСЛОВОМУ КЛЮЧУ
+7 kyu String Reordering
+ result 'Vatsan took his dog for a spin'
+ */
+
+ {
+    const list = [
+      {'4': 'dog' }, {'2': 'took'}, {'3': 'his'}, 
+      {'-2': 'Vatsan'}, {'5': 'for'}, {'6': 'a'}, {'12': 'spin'} 
+    ];
+  
+    function sentence(list) {
+  
+      return list.sort((a, b) => +Object.keys(a) > +Object.keys(b) ? 1 : -1).map((item) => Object.values(item)).join(' ');
+  
+    }
+    console.log(sentence(list));
+   }
+  
+   
+
 
 console.log(`
 
