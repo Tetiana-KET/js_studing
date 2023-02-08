@@ -73,6 +73,8 @@ function isSimple(num) {
     }
     return true;
 }
+//https://www.youtube.com/watch?v=s8zUK5jmXA4 найти все простые числа в заданном диапазоне
+
 // console.log(isSimple(41));
 // let num = 65123;
 // let simple = isSimple(num);
