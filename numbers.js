@@ -1,3 +1,22 @@
+//Math.random()     СГЕНЕРИРОВАТЬ случайное целое число от min до max (включительно).
+//Math.random() возвращает псевдослучайное число с плавающей запятой из диапазона [0, 1), от 0 (включительно) до 1 (но не включая 1),
+// правильное решение – это использовать Math.floor для получения случайного числа от min до max+1:
+{function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
+  }
+}
+{
+   
+
+    function randomInteger(min, max) {
+    // случайное число от min до (max+1)
+    let rand = min + Math.random() * (max + 1 - min);
+    return Math.floor(rand);
+    }
+}
+
 // Привести число к двоичной системе исчисления
 // Метод toString(2) принимает параметр - какая система исчисления
 
@@ -50,8 +69,6 @@ function isOddNumber(num) {
     //если 1, нечетный = да нечетный
     console.log(isOdd);
 
-    isOdd = Boolean(num & 1); // вернет тру, если оба 1
-    console.log(isOdd);
 }
 // isOddNumber(5)
 

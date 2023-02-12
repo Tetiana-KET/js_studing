@@ -499,7 +499,7 @@ function sortByAge(arr) {
 console.log(sortByAge(arr));
 }
 
-//Перемешать массив
+//Перемешать массив/ РАНДОМ
 {
     let array = [1, 2, 3, 4 , 5 , 6];
 

@@ -420,3 +420,97 @@ function add(num1, num2) {//(add(122, 81)
     }
   }
 }
+
+{
+  //Bingo Card.js 
+  function getCard() {
+    let arrBingo = [];
+    
+    function createRandonNumber (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;//СГЕНЕРИРОВАТЬ случайное целое число от min до max (включительно).
+  }
+  
+  for (let i =0; i<5; i++) {
+    let number = `B${createRandonNumber(1, 15)}`;
+    if (arrBingo.includes(number)) { //проверяем, чтобы исклюсить повторы
+      i--;// если был повтор, делаем шаг назад и генерируем новое число
+      continue;
+    } else {arrBingo.push (number);}
+    
+  }
+  
+  for (let i =0; i<5; i++) {
+    let number = `I${createRandonNumber(16, 30)}`;
+    if (arrBingo.includes(number)) {
+      i--;
+      continue;
+    } else {
+      arrBingo.push (number);
+    }
+    
+  }
+  
+  for (let i =0; i<5; i++) {
+    let number = `N${createRandonNumber(31, 45)}`;
+    if (i === 2) { // проверка чтобы пропустить 1 ячейку
+      continue;
+  } else if ( arrBingo.includes(number) ) {
+      i--;
+    continue;
+    }  else {
+      arrBingo.push (number);
+    }
+    
+  }
+  
+  for (let i =0; i<5; i++) {
+    let number = `G${createRandonNumber(46, 60)}`;
+    if (arrBingo.includes(number)) {
+      i--;
+      continue;
+    } else {
+      arrBingo.push (number);
+    }
+    
+  }
+  
+  for (let i =0; i<5; i++) {
+    let number = `O${createRandonNumber(61, 75)}`;
+    if (arrBingo.includes(number)) {
+      i--;
+      continue;
+    } else {
+      arrBingo.push (number);
+    }
+    
+  }
+  console.log(arrBingo);
+  return arrBingo;
+  
+}
+}
+
+
+{
+  //Lottery Ticket
+  //[['ABC', 65], ['HGR', 74], ['BYHT', 74]]
+  function bingo(ticket, win){ 
+  
+    let result = 
+      (ticket.filter( (subArr) => subArr[0].split('').some((char) => char.charCodeAt(0) == subArr[1]) ).length >= win) ? 'Winner!' : 'Loser!';
+      return result;
+    }
+}
+{
+  function bingo(ticket, win){
+    var count = 0;
+    
+    ticket.forEach((item) => {
+      if (item[0].includes(String.fromCharCode(item[1]))) {
+        count++;
+      }
+    });
+    
+    return (count >= win) ? "Winner!" : "Loser!";
+  }
+}
