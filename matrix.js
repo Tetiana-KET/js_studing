@@ -1,9 +1,9 @@
-// let matrix = [
-//     [1, 2, 3, 4],
-//     [5, 6, 7, 8],
-//     [0, 3, 6, 9],
-//     [6, 8, 0, 2],
-// ];
+let matrix = [
+    [1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [0, 3, 6, 9],
+    [6, 8, 0, 2],
+];
 function logEachMatrixItem(matrix) {
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < matrix[i].length; j++) {
@@ -89,7 +89,14 @@ function sumOfEveryStringOfMatrix(matrix) {
 }
 //sumOfEveryStringOfMatrix(matrix); // [10, 26, 18, 16]
 
-// обход матрицы по столбцам
+{
+    let matrix = [
+    [1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [0, 3, 6, 9],
+    [6, 8, 0, 2],
+];
+// ОБХОД МАТРИЦЫ ПО СТОЛБЦАМ
 // 1 2 3 4 - j
 // 5 6 7 8
 // 0 3 6 9
@@ -98,20 +105,21 @@ function sumOfEveryStringOfMatrix(matrix) {
 
 function findColumnsWithZero(matrix) {
     let columnsWithZeroInd = []; // накапливаем результаты
-    let columnAmount = matrix[0].length; // сколько вообще у нас колонок
+    let columnAmount = matrix[0].length; // сколько вообще у нас колонок (количество элементов строки)
     
-    for (let i = 0; i < columnAmount; i++) { // i - номер столбцa
+    for (let column = 0; column < columnAmount; column++) { // i - номер столбцa - (column)
         
-        for (let j = 0; j < matrix.length; j++) { // строки. идем от нулевой строки вниз. j - номер строки
-            if (matrix[j][i] === 0) {
-                columnsWithZeroInd.push(i);
+        for (let row = 0; row < matrix.length; row++) { // строки. идем от нулевой строки вниз. j - номер строки - raw
+            if (matrix[raw][column] === 0) {
+                columnsWithZeroInd.push(column);
                 break;//по заданию нужно найти столбец с 0, если нашли хоть 1 ноль, нет надобности проверять дальше
             }
         }
     }
     console.log('Columns With Zero -', columnsWithZeroInd);
 }
-//findColumnsWithZero(matrix);//Columns With Zero - (2) [0, 2]
+findColumnsWithZero(matrix);//Columns With Zero - (2) [0, 2]
+}
 
 let smallMatrix = [
     [1, 2, 3],// - i
@@ -126,6 +134,7 @@ function showSmallMatrix() {
 }
 //(smallMatrix);
 
+//ОБХОД МАТРИЦЫ ЗМЕЙКОЙ
 function passThroughLikeSnake(smallMatrix) {
     for (let i = 0; i < smallMatrix.length; i++) { //проход по элементам(строкам) наружного массива (матрицы)
         for (let j = 0; j < smallMatrix[i].length; j++) {
@@ -139,12 +148,12 @@ function passThroughLikeSnake(smallMatrix) {
     }  
 }
 //passThroughLikeSnake(smallMatrix);// 123654789
-let matrix = [
-    [1, 2, 3, 4],
-    [5, 6, 7, 8],
-    [9, 10, 11, 12],
-    [13, 14, 15, 16],
-];
+// let matrix = [
+//     [1, 2, 3, 4],
+//     [5, 6, 7, 8],
+//     [9, 10, 11, 12],
+//     [13, 14, 15, 16],
+// ];
 
 function towelSort(matrix = []) { // параметр по умолчанию, если функцию вызвать без параметров
   let result = [];

@@ -749,3 +749,12 @@ class Stack {
     }
 
 }
+
+{
+    //ОТФИЛЬТРОВАТЬ КОММЕНТАРИИ ПО АЙДИ ПОСТА, К КОТОРОМУ ОНИ ОТНОСЯТСЯ И ПОКАЗАТЬ ТОЛЬКО ИХ ТЕКСТ 
+
+    function getCommentsByPostId (commentList, postId) { //принимает массив объектов с данными о посте и комент.
+        let comments = commentList.filter ( (comment) => comment.postId === postId ). //сравниваем нужный айди со айди из списка
+                                    map( (comment) => comment.text )
+    }
+}
