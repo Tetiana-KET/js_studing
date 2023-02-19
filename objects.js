@@ -255,3 +255,22 @@ let salaries = {
     }
     console.log(count (salaries));//3
 }
+
+{
+//ПРОТОТИПЫ
+    const person = new Object ({
+        name: 'Maxim',
+        age: 25,
+        greet: function () {
+            console.log('Greet!')
+        }
+    })
+
+
+    Object.prototype.sayHello = function () { //добавили новое свойство для прототипа объекта
+        console.log('Hello')
+    }
+
+    const lena = Object.create(person);// создали объект лена ОТ объэкта person
+    console.log(lena)// {}[[Prototype]]:Object    age:25    greet:ƒ ()    name:"Maxim"    [[Prototype]]:Object
+}

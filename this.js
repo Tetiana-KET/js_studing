@@ -1,3 +1,6 @@
+//this - это ссылка на объект до точки. Объект в контексте которого вызывается функция.
+//this;// вне функции по умолчанию  это объект Window
+
 console.log('Просто в программе');
 console.log(this);// вне функции по умолчанию объект Window
 
@@ -30,3 +33,5 @@ let p = document.querySelectorAll('p');
 p.forEach(function(element) {
     element.addEventListener('click', usingThis);
 });
+
+bind(obj)//привязать объект в качестве контекста
