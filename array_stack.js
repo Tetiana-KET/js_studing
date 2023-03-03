@@ -687,7 +687,11 @@ function checkOrder(str, bracketsConfig) {
 
 }
 
-//Развернуть вложенности массива 
+{
+    //Развернуть вложенности массива 
+//arr.flat(Infinity);
+//возвращает новый массив, в котором все элементы вложенных подмассивов были рекурсивно "подняты" на указанный уровень depth.
+//Метод flat удаляет пустые слоты из массива:
 function deepArr(a){
     let newArray = a.flat(Infinity);
     console.log(newArray);
@@ -707,6 +711,7 @@ function deepCount(a){
 
 //console.log(deepCount([1, 2, [3, 4, [5]]]));//7
 
+}
 
 
 /**
