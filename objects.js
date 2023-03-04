@@ -1,3 +1,10 @@
+/*
+Object.keys(obj) – возвращает массив ключей.
+Object.values(obj) – возвращает массив значений.
+Object.entries(obj) – возвращает массив пар [ключ, значение].
+Object.fromEntries(array) - преобразовать массив обратно в объект
+*/
+
 let firstPart = 'likes';
 
 let userInfo = { // литерал объекта
@@ -131,21 +138,57 @@ function strCount(obj) {
     return count;
 }
 
-//Сумма свойств объекта
+{
+    //Сумма свойств объекта
 
-let salaries = {
-  John: 100,
-  Ann: 160,
-  Pete: 130
-}
-
-function getTotal() {
-    let total = 0;
-    for (let key in salaries) {
-        total += salaries[key];
+    let salaries = {
+        John: 100,
+        Ann: 160,
+        Pete: 130,
+        Andry: 800,
+        Mary: 250
     }
-    return total;
+
+    function getTotal() {
+        let total = 0;
+        for (let key in salaries) {
+            total += salaries[key];
+        }
+        return total;
+    }
+
+    function getSumOfSalaries () {
+        let sum = 0;
+        for (let salary of Object.values(salaries)) {
+            sum += salary;
+        }
+        return sum;
+    }
+    // console.log(getSumOfSalaries ());
+
+    function getSumOfSalariesWithReduce () {
+        return Object.values(salaries).reduce((salary, acc) => salary + acc, 0)
+    }
+    //console.log(getSumOfSalariesWithReduce ());
+
+    //Создайте функцию topSalary(salaries), которая возвращает имя самого высокооплачиваемого сотрудника.
+    
+    function getTopSalary () {
+        let maxSalary = 0;
+        let getMaxName = null;
+        // Используйте Object.entries и деструктурирование, чтобы перебрать пары ключ/значение.
+        for (let [name, salary] of Object.entries(salaries)) {
+            if (maxSalary < salary) {
+                maxSalary = salary;
+                getMaxName = name;
+            }
+        }
+
+        return getMaxName;
+    }
+    //console.log(getTopSalary ())//Andry
 }
+
 
 //console.log(getTotal()); 390
 
