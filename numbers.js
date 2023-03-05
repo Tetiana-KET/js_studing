@@ -8,12 +8,10 @@
   }
 }
 {
-   
-
     function randomInteger(min, max) {
-    // случайное число от min до (max+1)
-    let rand = min + Math.random() * (max + 1 - min);
-    return Math.floor(rand);
+        // случайное число от min до (max+1)
+        let rand = min + Math.random() * (max + 1 - min);
+        return Math.floor(rand);
     }
 }
 
@@ -156,3 +154,59 @@ function getSumOfDigits(n) {
     return sum;
 }
 console.log(getSumOfDigits(288));
+
+//Вычислить сумму чисел до данного including
+
+{
+    // 1. цикл
+    function getSumInCycle (n) {
+        let sum = 0;
+        for (let i = 1; i <= n; i++) {
+            sum += i
+        }
+        return sum
+    }
+    //console.log(getSumInCycle (100));
+
+    // 2. Решение через рекурсию:
+    function getSumByRecursion (n) {
+        return n == 1 ? n : n + (getSumByRecursion (n-1));
+    }
+    //console.log(getSumByRecursion (100));
+
+    //3. Решение по формуле: sumTo(n) = n*(n+1)/2
+
+    function getSumWithArithmeticProgressionFormula (n) {
+        return n * (n + 1) / 2
+    }
+   // console.log(getSumWithArithmeticProgressionFormula (100));
+}
+
+{
+    /* ФАКТОРИАЛ
+    Факториал натурального числа – это число, умноженное на "себя минус один", 
+    затем на "себя минус два", и так далее до 1. Факториал n обозначается как n!
+    n! можно записать как n * (n-1)!
+    */
+
+    function getFuctorial (n) {
+        return n == 1 ? 1 : n * getFuctorial (n - 1)
+    }
+    console.log(getFuctorial (5))
+}
+
+{
+    //Числа Фибоначчи
+    //Fn = Fn-1 + Fn-2
+    //1 1(1+0) 2(1+1), 3(1+2), 5(2+3) и так далее: 1, 1, 2, 3, 5, 8, 13, 21....
+    function culcFibonachi(n) {
+        let a = 1;
+        let b = 1;
+        for (let i = 3; i <= n; i++) {
+          let c = a + b;
+          a = b;
+          b = c;
+        }
+        return b;
+      }
+}

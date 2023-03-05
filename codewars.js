@@ -120,7 +120,7 @@ function handshake(n) {// amount of persons is given. should find an amount of h
   function getParticipants(handshakes){
     let person = 0;
     let handShake = 0;
-
+    //sumTo(n) = n*(n+1)/2 формула арифметической прогрессии для нахождения суммы до n
     while(handShake < handshakes) {
       handShake = person * (person + 1) / 2;
 
