@@ -1,3 +1,5 @@
+//закончила на хендшейк. ее сделала
+
 function likes(names) {
  let message = (names.length === 0) ? 'no one likes this' :
   (names.length === 1) ? `${names[0]} likes this` :
@@ -105,6 +107,7 @@ function handshake(n) {// amount of persons is given. should find an amount of h
   // means all the persons
   // have done handshake
   // with other
+  //handshakes = people * (people-1) / 2
   if (n === 0)
     return 0;
   else
@@ -113,21 +116,32 @@ function handshake(n) {// amount of persons is given. should find an amount of h
 //console.log(handshake(6));
 
 //handshakes are given/ need to find out an amount of people needed to perform it
-function getParticipants(handshakes){
-  if(handshakes === 0) return 0;
+{
+  function getParticipants(handshakes){
+    let person = 0;
+    let handShake = 0;
 
-  let result = 0;
-  let sum = 0
+    while(handShake < handshakes) {
+      handShake = person * (person + 1) / 2;
 
-  while(sum < handshakes) {
-    sum = result * (result + 1) / 2;
+      person++;
+    }
 
-    result++;
+    return person;
   }
-
-  return result;
+  console.log(getParticipants(7))
 }
-//console.log(getParticipants(36));
+
+{
+  //handshakes = people * (people-1) / 2
+  //people * (people -1) =>  people в квадрате -1 = handshakes * 2
+  // people = (корень квадратный из (handshakes * 2)) округлить вниз +1
+  function getParticipants(handshakes){
+    return handshakes == 0 ? 0 : ((Math.round(Math.sqrt(handshakes*2)))+1)
+  }
+  console.log(getParticipants(7))
+}
+// console.log(getParticipants(190));
 
 //Duplicate Encoder
 
