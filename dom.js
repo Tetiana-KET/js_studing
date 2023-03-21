@@ -59,3 +59,21 @@
     console.log(nextSibling);
     console.log(parentElement);//весь элемент html со всем содержимым
 }
+// getElementsBy - живая колекция
+//querySelectorAll - статичная колекция
+
+{
+/* ПОЛУЧЕНИЕ И ИЗМЕНЕНИЕ ДОКУМЕНТА
+    innerHTML - получаем содержимое как есть, вместе с тегами
+*/
+    //getting an object(element we need)
+    const textElement = document.querySelector('.lesson__text');
+    //getting object`s inner with html
+    const textElementContent = textElement.innerHTML;
+    //меняем содержимое
+    textElement.innerHTML = 'Живи, в работай в свободное время!'
+
+    //Дописываем содержимое
+    textElement.innerHTML = 
+        `<p> ${textElementContent}</p> `
+}
