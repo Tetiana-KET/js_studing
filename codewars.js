@@ -1,4 +1,3 @@
-//закончила на хендшейк. ее сделала
 
 function likes(names) {
  let message = (names.length === 0) ? 'no one likes this' :
@@ -527,4 +526,54 @@ function add(num1, num2) {//(add(122, 81)
     
     return (count >= win) ? "Winner!" : "Loser!";
   }
+}
+
+{
+  //Javascript Mathematician
+  //You are writing a function that takes two sets of arguments of arbitrary length. 
+  //The return value will be the sum of the values of all of the arguments.
+
+  const calculate = (...args1) => (...args2) => [...args1, ...args2].reduce((s, v) => s + v);
+  function calculate1(...a) {
+    return function (...b) {
+      return [...a, ...b].reduce((sum, n) => sum + n)
+    };
+  }
+
+  function calculate2(...args1) {
+    return function calculate2 (...args2) {
+      return [...args1, ...args2].reduce((acc, item) => acc + item, 0)
+    }
+  }
+}
+
+{
+  //The Coupon Code
+  //Write a function called checkCoupon which verifies that a coupon code is valid and not expired.
+  function checkCoupon(enteredCode, correctCode, currentDate, expirationDate){
+    console.log(currentDate)
+    console.log(expirationDate)
+    console.log((enteredCode === correctCode))
+    console.log(new Date (expirationDate) - (new Date (currentDate)))
+
+    if ((new Date (expirationDate)) - (new Date (currentDate)) < 0) {
+      return false
+    } else if ((enteredCode !== correctCode)) {
+      return false
+    } else {
+      return true
+    }  
+  }
+  console.log(checkCoupon('123a','123','September 5, 2014','October 1, 2014'));
+  console.log(checkCoupon('123','123','September 5, 2014','October 1, 2014'));
+  console.log(checkCoupon('123','123','January 5, 2014','January 1, 2014'));
+
+  function checkCoupon1(enteredCode, correctCode, currentDate, expirationDate){
+    return enteredCode === correctCode && Date.parse(expirationDate) >= Date.parse(currentDate)
+  }
+
+  function checkCoupon2(enteredCode, correctCode, currentDate, expirationDate){
+    return enteredCode===correctCode && new Date(currentDate) <= new Date(expirationDate);
+  }
+
 }
