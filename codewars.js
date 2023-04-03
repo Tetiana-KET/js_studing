@@ -48,9 +48,9 @@ function rgb(r, g, b){
 }
 
 function toHex(d) {
-    if(d < 0 ) {return "00";}
-    if(d > 255 ) {return "FF";}
-    return  ("0"+(Number(d).toString(16))).slice(-2).toUpperCase()
+  if(d < 0 ) {return "00";}
+  if(d > 255 ) {return "FF";}
+  return  ("0"+(Number(d).toString(16))).slice(-2).toUpperCase()
 }
 
 //Highest and Lowest
@@ -576,4 +576,78 @@ function add(num1, num2) {//(add(122, 81)
     return enteredCode===correctCode && new Date(currentDate) <= new Date(expirationDate);
   }
 
+}
+
+{
+  /*Unlucky Days
+  посчитать количество пятниц 13 в году
+  Создать объект Date с заданными компонентами в местном часовом поясе. Обязательны только первые два аргумента.
+  
+  new Date(year, month, date, hours, minutes, seconds, ms)
+  
+  getDay() - Вернуть день недели от 0 (воскресенье) до 6 (суббота).
+  */
+ function unluckyDays(year){
+  let result = 0;
+  for (let i = 0; i<12; i++) {
+    result += new Date(year, i, 13).getDay() === 5 ;
+  }
+  return result;
+}
+}
+
+{
+//   Pair of gloves
+// Winter is coming, you must prepare your ski holidays. The objective of this kata is to determine the number of pair 
+// of gloves you can constitute from the gloves you have in your drawer.
+
+// Given an array describing the color of each glove, return the number of pairs you can constitute, 
+// assuming that only gloves of the same color can form pairs.
+ 
+  function numberOfPairs(gloves) {
+    let obj = {};
+    for (let i = 0; i < gloves.length; i++) {
+      let objKey = gloves[i];
+      if (obj[objKey]) {
+        obj[objKey]++;
+      } else {
+        obj[objKey] = 1;
+      }
+    }
+
+    let result = 0;
+    Object.keys(obj).forEach((el) => result += Math.floor(obj[el] / 2))
+    return result;
+  }
+}
+
+{
+  // Sorting by bits
+  // sort an array of 32-bit integers in ascending order of the number of on bits they have.
+  // In cases where two numbers have the same number of bits, compare their real values instead.
+  function sortByBit(arr) {
+
+  const countBits = (number) => number.toString(2).replace(/0/g, '').length;
+  arr.sort((a, b) => countBits(a)==countBits(b) ? a-b : countBits(a)-countBits(b) )
+
+}
+}
+
+{
+  // Let's Recycle!
+  // Вам будет предоставлен список объектов. Каждый объект имеет type, materialи, возможно secondMaterial
+  // Существующие материалы: paper, glass, organic, и plastic.
+  // Ваша задача состоит в том, чтобы отсортировать эти объекты по 4 мусорным бакам в соответствии с их material
+  // (и secondMaterialесли он присутствует), перечислив typeобъекты, которые должны попасть в эти мусорные баки.
+
+
+  function recycle(array) {
+   console.log(array)
+
+  const materials = ['paper', 'glass' , 'organic', 'plastic'];
+  
+  return materials.map(material => array
+                       .filter(itemObject => itemObject .material == material  || itemObject.secondMaterial == material)
+                       .map(obj => obj.type));
+}
 }
