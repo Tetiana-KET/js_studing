@@ -1,0 +1,79 @@
+function formatDuration (seconds) {
+  
+    const timeData = {   
+        minute: 60,
+        hour: 3600,
+        day: 86400,
+        year: 31536000,
+    }
+
+    if (seconds === 0) {return 'now'};
+    if (seconds === 1) {return '1 second'};
+ 
+    //track the number ot time unit given in input seconds
+    let years = 0, days = 0, hours = 0, minutes = 0;
+    const resultARR = [];
+    
+ 
+    //find YEARS 
+    if (seconds >= timeData.year) {
+      let result = '';
+        years = Math.floor(seconds / timeData.year)
+        seconds = seconds % timeData.year;
+        result = (years === 0) ? result:
+                 (years === 1) ? result + `${years} year` :
+                 result + `${years} years`;
+      resultARR.push(result);
+    };
+
+    //find DAYS 
+    if (seconds >= timeData.day) {
+      let result = '';
+        days = Math.floor(seconds / timeData.day)
+        seconds = seconds % timeData.day;
+        result = (days === 0) ? result:
+                 (days === 1) ? result + `${days} day` : result + `${days} days`;
+    resultARR.push(result);
+    };
+ 
+    //find HOURS 
+    if (seconds >= timeData.hour) {
+      let result = '';
+        hours = Math.floor(seconds / timeData.hour)
+        seconds = seconds % timeData.hour;
+        result = (hours === 0) ? result :
+                 (hours === 1) ? result + `${hours} hour` : result + `${hours} hours`
+        resultARR.push(result);
+    };
+ 
+    //find MINUTES 
+    if (seconds >= timeData.minute) {
+
+        let result = '';
+        minutes = Math.floor(seconds / timeData.minute)
+
+        seconds = seconds % timeData.minute;
+
+        result = (minutes === 0) ? result :
+                (minutes === 1) ? result + `${minutes} minute` : result + `${minutes} minutes`
+        resultARR.push(result);
+    }
+  
+    if (seconds > 0) {
+        let result = '';
+        result = (seconds === 1) ? result + `${seconds} second` : result + `${seconds} seconds`
+        resultARR.push(result);
+    }
+         
+//   console.log(resultARR)
+//   console.log(resultARR.slice(0, resultARR.length-1).join(', '))
+//   console.log(resultARR.at (-1))
+//   console.log(resultARR.at (-1).toString())
+ 
+  if (resultARR.length == 1) {
+    return resultARR.at (0).toString();
+  } else {
+    return `${resultARR.slice(0, resultARR.length-1).join(', ')} and ${resultARR.at (-1).toString()}`
+  }
+   
+}
