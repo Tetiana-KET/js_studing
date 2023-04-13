@@ -651,3 +651,14 @@ function add(num1, num2) {//(add(122, 81)
                        .map(obj => obj.type));
 }
 }
+{
+  function createSecretHolder(secret) {
+    return {
+      getSecret:function(){
+        return secret
+      },
+      setSecret:function(v){
+        secret=v}
+    }
+  }
+}
