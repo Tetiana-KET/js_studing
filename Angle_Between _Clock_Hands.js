@@ -45,3 +45,25 @@ function handAngle (date) {
     }
     
   }
+
+  function handAngleInRadians (date) {
+
+    let hour = date.getHours() % 12;
+    let minutes = date.getMinutes();
+  
+    let minuteAngle = minutes * 6;
+    let hourAngle = (hour * 30) + (minutes * 0.5);
+    let angle = Math.abs(hourAngle - minuteAngle);
+    if (angle > 180) {
+      angle = 360 - angle;
+    }
+    //Math.PI = π ≈ 3,14159
+    //180 градусов = π * радиан
+    //π * радиан  = 180°
+    // радиан = 180° / π
+    //1°= π/180 * рад
+    //Формула перевода радианов в градусы - x рад=((х⋅180)/π)∘
+    //Формула перевода в радианы из градусов.  y°=(y*π/ 180) рад
+    //47° ≈ 47 * 3,14 / 180 ≈ 0,82 рад
+    return angle * Math.PI / 180
+  }
