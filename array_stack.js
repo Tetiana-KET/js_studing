@@ -537,7 +537,68 @@ console.log(sortByAge(arr));
   
     }
     console.log(sentence(list));
-   }
+}
+{
+    //Развернуть вложенности массива 
+    //arr.flat(Infinity);
+    //возвращает новый массив, в котором все элементы вложенных подмассивов были рекурсивно "подняты" на указанный уровень depth.
+    //Метод flat удаляет пустые слоты из массива:
+    function deepArr(a){
+        let newArray = a.flat(Infinity);
+        console.log(newArray);
+    }
+    // deepArr([1, 2, [3, 4, [5]]]);// [1, 2, 3, 4, 5]
+
+    /*var result = arr.reduce(function(sum, current) {
+    return sum + current;
+    }, 0);*/
+
+    function deepCount(a){
+        return a.reduce((acc, el) => {
+            return acc + (Array.isArray(el) ? deepCount(el) : 0);//если элемент масив, возвращает true => 1 к асс добавляем 1 
+            //и запускаем рекурсивно функцию для этого элемента
+    }, a.length);//, a.length - это аккумулятор, равен длине массива
+    }
+
+    //console.log(deepCount([1, 2, [3, 4, [5]]]));//7
+}
+
+{
+    //Посчитать глубину вложенности
+
+    function calculateDepth(arr) {
+        let depth = 1;
+        for (let i=0; i< arr.length; i++) {
+          if ( Array.isArray(arr[i]))  {
+            arr = arr.flat();
+            depth += this.calculateDepth(arr);
+            return depth;
+          }
+        }
+        return depth;
+      }
+}
+
+{
+    /* For n = 152, the output should be 52
+    * assert.strictEqual(deleteDigit(152), 52);
+    * assert.strictEqual(deleteDigit(1001), 101);
+    * assert.strictEqual(deleteDigit(10), 1);
+    * assert.strictEqual(deleteDigit(222219), 22229);
+    * assert.strictEqual(deleteDigit(109), 19);
+    * assert.strictEqual(deleteDigit(342), 42);
+    *
+    */
+    function deleteDigit(n ) {
+        const arr = [];
+        const str = n.toString();
+        for (let digit of str) {
+        arr.push(+str.replace(digit, ''))
+        }
+        return Math.max(...arr);
+    }
+    // deleteDigit(222219);
+}
   
    
 
@@ -687,32 +748,6 @@ function checkOrder(str, bracketsConfig) {
 
 }
 
-{
-    //Развернуть вложенности массива 
-//arr.flat(Infinity);
-//возвращает новый массив, в котором все элементы вложенных подмассивов были рекурсивно "подняты" на указанный уровень depth.
-//Метод flat удаляет пустые слоты из массива:
-function deepArr(a){
-    let newArray = a.flat(Infinity);
-    console.log(newArray);
-}
-// deepArr([1, 2, [3, 4, [5]]]);// [1, 2, 3, 4, 5]
-
-/*var result = arr.reduce(function(sum, current) {
-  return sum + current;
-}, 0);*/
-
-function deepCount(a){
-    return a.reduce((acc, el) => {
-        return acc + (Array.isArray(el) ? deepCount(el) : 0);//если элемент масив, возвращает true => 1 к асс добавляем 1 
-        //и запускаем рекурсивно функцию для этого элемента
-   }, a.length);//, a.length - это аккумулятор, равен длине массива
-}
-
-//console.log(deepCount([1, 2, [3, 4, [5]]]));//7
-
-}
-
 
 /**
 * Implement the Stack with a given interface via array.
@@ -762,4 +797,53 @@ class Stack {
         let comments = commentList.filter ( (comment) => comment.postId === postId ). //сравниваем нужный айди со айди из списка
                                     map( (comment) => comment.text )
     }
+}
+
+{
+    /*
+    Transform array
+    Your task is to implement the function transform(arr) that takes an array and returns transformed array, based on the control sequences that arr contains. 
+    Control sequences are defined string elements of the mentioned array:
+    --discard-next excludes the next element of the array from the transformed array.
+    --discard-prev excludes the previous element of the array from the transformed array.
+    --double-next duplicates the next element of the array in the transformed array.
+    --double-prev duplicates the previous element of the array in the transformed array.
+    For example:
+    * transform([1, 2, 3, '--double-next', 4, 5]) => [1, 2, 3, 4, 4, 5]
+    * transform([1, 2, 3, '--discard-prev', 4, 5]) => [1, 2, 4, 5]
+    * input: [1, 2, 3, '--double-next', 1337, '--double-prev', 4, 5], => output: [1, 2, 3, 1337, 1337, 1337, 4, 5]
+    * input: [1, 2, 3, '--discard-next', 1337, '--discard-prev', 4, 5], => output: [1, 2, 3, 4, 5]
+    The function should throw an Error with message 'arr' parameter must be an instance of the Array!
+    */
+
+    function transform(arr) {
+        //f there is no element next to the control sequence to which it can be applied in the initial array, or this element was previously deleted, it does nothing.
+          if (!Array.isArray(arr)) throw new Error(`'arr' parameter must be an instance of the Array!`);
+          if (!arr.length) return [];
+          const result = [];
+          arr.forEach ((elem, index, arr) => {
+            if (arr[index-1] === '--discard-next') {
+              result.push(undefined);
+            } else {
+              switch (elem) {
+                case '--double-prev': 
+                  result.push(result.at(-1));
+                break;
+                case '--double-next':
+                  result.push(arr[index+1]);
+                break;
+                case '--discard-prev':
+                  result.pop();
+                break; 
+          
+                case '--discard-next':
+                  result.push(undefined);
+                break;
+         
+                default: result.push(elem);
+              }
+            }
+          });
+          return result.filter((el) => el !== undefined);
+        }
 }
