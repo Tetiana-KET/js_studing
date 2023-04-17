@@ -1,7 +1,7 @@
 class Node {
     constructor (value) {
         this.value = value;
-        this.next - null;
+        this.next = null;
     }
 }
 
@@ -141,6 +141,50 @@ class LinkedList {
         this.removeAt(this.indexOf(element));
     };
 
+    //FIND ELEMENT
+
+    find(value) {
+        if (!this.head) {
+            return null;
+        }
+
+        let currentNode =this.head;
+
+        while(currentNode) {
+            if(currentNode.value === value) {
+                return currentNode;
+            }
+            currentNode = currentNode.next;
+        }
+    }
+
+    //delete given element
+
+    delete(value) {
+        if (!this.head) {
+            return null;
+        }
+
+        let deletedNode = null;
+
+        while(this.head && this.head.value === value) {
+            deletedNode = this.head;
+            this.head = this.head.next;
+        }
+        let currentNode = this.head.next;
+
+        if (currentNode  !== null) {
+            while(currentNode.next) {
+                if (currentNode.next.value === value) {
+                    deletedNode = currentNode.next;
+                    currentNode.next = currentNode.next.next;
+                } else {
+                    currentNode = currentNode.next;
+                }
+            }
+        }
+    }
+
     size () {
         return this.length;
     };
@@ -159,36 +203,57 @@ class LinkedList {
     }
 }
 
-/** УДАЛИТЬ ОПРЕДЕЛЕННЫЙ ЭЛЕМЕНТ ИЗ СПИСКА
- * Given a singly linked list of integers l and an integer k,
- * remove all elements from list l that have a value equal to k.
- *
- * @param {List} l
- * @param {Number} k
- * @return {List}
- *
+
+
+{
+    /**
+ *Queue
+ * Implement the Queue with a given interface via linked list. 
+ * Each instance of queue must have 3 methods: 
+ * * enqueue(value) — puts the value at the end of the queue 
+ * * dequeue — retrieves a value from the head of the queue and deletes it 
+ * * getUnderlyingList - returns underlying linked list
  * @example
- * For l = [3, 1, 2, 3, 4, 5] and k = 3,
- * the output should be [1, 2, 4, 5]
+ * const queue = new Queue();
  *
- * Singly - linked lists are already defined using interface
- * class ListNode {
- *   constructor(x) {
- *     this.value = x;
- *     this.next = null;
- *   }
- * }
+ * queue.enqueue(1); // adds the element to the queue
+ * queue.enqueue(3); // adds the element to the queue
+ * queue.dequeue(); // returns the top element from queue and deletes it, returns 1
+ * queue.getUnderlyingList() // returns { value: 3, next: null }
  */
+class Queue {
 
-function removeKFromList(l, k) {
-    let current = this.head;
-
-        while (current) {
-            if (current.value === k) {
-                current = current.next;
-            }
-            current = current.next;
-        }
-        return l;
+    constructor() {
+      this.head = null;//еще нет первого элемента
+      this.tail = null;
+      this.length = 0;
+    }
+  
+    getUnderlyingList() {
+      return this.head;
+    }
+  
+    enqueue(value) {
+  
+      let last = {value, next: null};
+  
+      if (this.length) {
+        this.tail.next = last;
+        this.tail = this.tail.next;
+      } else {
+        this.head = last;
+        this.tail = last;
+      }
+      this.length ++;
+  
+    }
+  
+    dequeue() {
+      let current = this.head;
+      this.head = this.head.next;
+      this.length --;
+      return current.value;
+    }
+  }
+  
 }
-console.log(removeKFromList([3, 1, 2, 3, 4, 5], 3));

@@ -110,12 +110,73 @@ function wordCount(str) { // делим строку на масив элеме�
 // 01234(01234)
 //E -> SHIFT 2 -> B[1]  //
 //[4] + 2(сдвиг) % length (5) = [1] - остаток от деления 6/5 = 1/1
-
+// тут понятнее - https://www.youtube.com/watch?v=KST4bGAH-8Y
 
 
 
 // Шифр Виджинера - сдвигаем каждый символ текста на столько, на сколько сдвинут символ соответствующего индекса в ключе
+{
 
+    const alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+
+    //encrypt method accepts 2 parameters: message (string to encode) and key (string-keyword)
+    //an Error with message Incorrect arguments! must be thrown.
+    //The text returned by these methods must be uppercase. 
+    //Machines encrypt and decrypt only latin alphabet (all other symbols remain unchanged).
+    //arr.indexOf(searchElement[, fromIndex = 0])
+    
+    function encrypt(message, key) {
+
+        if(!message || !key) {
+          throw new Error ('Incorrect arguments!');
+        }
+        
+        let result = '';
+        let j = 0;
+
+        for (let i = 0; i<message.length; i++) {
+            if (j > key.length-1) {
+                j = 0;
+            };
+            if (!alphabet.includes(message[i].toUpperCase())) {
+                result +=message[i];
+            } else {
+                result += alphabet[(alphabet.indexOf(message[i].toUpperCase()) + alphabet.indexOf(key[j].toUpperCase()) ) % 26]
+                j++
+            }
+        }
+        console.log(result);
+    }
+   // encrypt('attack at dawn!', 'alphonse')//'AEIHQX SX DLLU!' - AEIHQX SX DLLU!
+
+    function  decrypt(message, key) {
+        let result = '';
+        let j = 0;
+
+        
+        for (let i = 0; i<message.length; i++) {
+            if (j > key.length-1) {
+                j = 0;
+            };
+
+            if (!alphabet.includes(message[i].toUpperCase())) {
+                result +=message[i];
+            } else {
+                if ((alphabet.indexOf(message[i].toUpperCase()) - alphabet.indexOf(key[j].toUpperCase()) >= 0)) {
+                    result += alphabet[(alphabet.indexOf(message[i].toUpperCase()) - alphabet.indexOf(key[j].toUpperCase()) )]
+                    j++
+                } else {
+                    let index = (alphabet.indexOf(message[i].toUpperCase()) - alphabet.indexOf(key[j].toUpperCase())) + 26;
+                    result += alphabet[index];
+                    j++
+                }
+                
+            } 
+        }
+        console.log(result)
+    }
+    //decrypt('AEIHQX SX DLLU!', 'alphonse')
+}
 
 
 function vigenereEncode(text, key) {

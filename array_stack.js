@@ -599,6 +599,51 @@ console.log(sortByAge(arr));
     }
     // deleteDigit(222219);
 }
+{
+    //ПЕРЕИМЕНОВАТЬ ФАЙЛЫ
+    /*There's a list of file, since two files cannot have equal names, the one which comes later will have a suffix (k), 
+    where k is the smallest integer such that the found name is not used yet. Your task is to implement function,
+    that accepts array of names (names) and returns an array of names that will be given to the files.
+    For input ["file", "file", "image", "file(1)", "file"], // {file: 3, image: 1, file(1): 1}
+    * the output should be ["file", "file(1)", "image", "file(1)(1)", "file(2)"]
+    *
+    */
+   function renameFiles(names) {
+     const checked = {};//file=1+1+1,file(1)=2,image=1,file(1)(1)=1
+     const result = [];//file,file(1),image,file(1)(1),file(2)
+  
+      names.map((name) => {
+        if (!checked[name]) {
+          checked[name] = 1;
+          result.push(name);
+        } else {
+          let changedName = `${name}(${checked[name]})`;
+          checked[name] += 1;
+          checked[changedName] = 1;
+          result.push(changedName);
+
+        }
+      });
+      console.log(result);//['file', 'file(1)', 'image', 'file(1)(1)', 'file(2)']
+    }
+    //renameFiles(["file", "file", "image", "file(1)", "file"])
+/**
+ * Given an array with heights, sort them except if the value is -1.
+ * arr = [-1, 150, 190, 170, -1, -1, 160, 180]
+ * The result should be [-1, 150, 160, 170, -1, -1, 180, 190]
+ */
+function sortByHeight(arr) {
+  const result = arr.filter((num) => num >= 0).sort((a,b) => a-b);
+    arr.forEach((n, i, arr)=> {
+        if (n == -1) {
+            result.splice(i, 0, n)//[-1, 150, 160, 170, -1, -1, 180, 190]
+        }
+    })
+    console.log(result)
+}
+console.log(sortByHeight([-1, 150, 190, 170, -1, -1, 160, 180]))// [-1, 150, 190, 170, -1, -1, 160, 180]
+
+}
   
    
 
