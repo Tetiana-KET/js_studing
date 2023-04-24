@@ -135,3 +135,39 @@ console.log(binarySearch(7, arr));
 // Индексирование: O(log n).
 // Поиск: O(log n).
 // Вставка: O(log n).
+
+class Node {
+  constructor (value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+class binarySearchTree {
+  constructor () {
+    this.root = null;
+  }
+
+  add (value) {
+    this.root = addWithin(this.root, value);
+
+    function addWithin(node, value) {
+      if (!node) {
+        return new Node(value);
+      }
+
+      if (node.value === value) {
+        return node;
+      }
+
+      if (value < node.value) {
+        node.left = addWithin(node.left, value);
+      } else {
+        node.right = addWithin(node.right, value);
+      }
+
+      return node;
+    }
+  }
+}
