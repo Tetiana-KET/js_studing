@@ -1,0 +1,17 @@
+{
+  "name": "js_studing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "algorithm_binary_search.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^1.19.1"
+  }
+}
