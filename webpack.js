@@ -1,6 +1,8 @@
 /*
-npm i -D webpack webpack-cli webpack-dev-server
-npx webpack init
+mkdir webpack-demo
+cd webpack-demo
+npm init -y
+npm install webpack webpack-cli --save-dev
 
 Представим, что в нашем приложении есть файл application.js с функциями, необходимыми для работы:
 Экспортируем эти функции, чтобы воспользоваться ими в другом месте:
