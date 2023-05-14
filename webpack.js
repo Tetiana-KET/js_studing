@@ -1,4 +1,7 @@
 /*
+npm i -D webpack webpack-cli webpack-dev-server
+npx webpack init
+
 Представим, что в нашем приложении есть файл application.js с функциями, необходимыми для работы:
 Экспортируем эти функции, чтобы воспользоваться ими в другом месте:
 export { functionName1, functionName2 }
@@ -28,7 +31,7 @@ import { sayHello, sayBye } from './application'
       filename: 'bundle.js'
     }
   }
-  запустить конфигурационный файл - написать в командной строке webpack
+
 
 3.Добавить скрипт для сборки в package.json и вызвать его:
 
