@@ -29,3 +29,85 @@ const mul = (x) => {
     }
 
 */
+
+// 
+
+{
+    //посчитать сумму всех зарплат в компании
+
+    let company = { // тот же самый объект, сжатый для краткости
+        sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 600 }],
+        development: {
+          sites: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1800 }],
+          internals: [{name: 'Jack', salary: 1300}]
+        }
+    };
+
+    function calculateSalary (department) {
+        if(Array.isArray(department)) {
+            return department.reduce((acc, current) => acc + current.salary, 0);
+        } else {
+            let sum = 0;
+            for (let subDep of Object.values(department)) {
+                sum+=calculateSalary (subDep)
+            }
+            return sum;
+        }
+
+    }
+    // console.log(calculateSalary (company))
+}
+{
+    //Вычислить сумму чисел до данного
+    function calculateSunToGivenNum (n) {
+        return n===1 ? n : n + calculateSunToGivenNum (n-1)
+    }
+    console.log(calculateSunToGivenNum (100))
+
+    //С использованием формулы арифметической прогрессии.
+    function calculateSunToGivenNum1 (n) {
+        return n*(n+1)/2;
+    }
+    console.log(calculateSunToGivenNum1 (100))
+
+    //Решение с помощью цикла
+    function calculateSunToGivenNum2 (n) {
+       let sum =0;
+       for (let i=1; i<=n; i++) {
+        sum+=i
+       }
+       return sum;
+    }
+    console.log(calculateSunToGivenNum2 (100))
+}
+
+{
+    //Вычислить факториал
+    /*Факториал натурального числа – это число, умноженное на "себя минус один", 
+    затем на "себя минус два", и так далее до 1. Факториал n обозначается как n!*/
+
+    function getFactorial (n) {
+     return n === 1? n : n *getFactorial(n-1);
+    }
+    console.log(getFactorial (5))
+}
+
+{
+    //Числа Фибоначчи
+    /*
+    каждое следующее число в последовательности получается как сумма двух предыдущих.
+
+    Первые два числа равны 1, затем 2(1+1), затем 3(1+2), 5(2+3) и так далее: 1, 1, 2, 3, 5, 8, 13, 21....
+    */
+
+    function fib(n) {
+        let a = 1;
+        let b = 1;
+        for (let i = 3; i <= n; i++) {
+          let c = a + b;
+          a = b;
+          b = c;
+        }
+        return b;
+      }
+}
