@@ -644,7 +644,30 @@ function sortByHeight(arr) {
 console.log(sortByHeight([-1, 150, 190, 170, -1, -1, 160, 180]))// [-1, 150, 190, 170, -1, -1, 160, 180]
 
 }
-  
+//ПЕРЕВЕРНУТЬ МАССИВ
+
+{
+    function reverseArr(arr) {
+        return list.reverse();
+    }
+
+    function reverseArr1(arr) {
+        const result = [];
+        for (let i =0; i<=arr.length-1; i++) {
+            result.push(arr[arr.length-1-i])
+
+        }
+        return result
+    }
+    
+    function reverseArr2(arr) {
+        const array = [];
+        for (let i = arr.length-1; i >= 0; i --){
+          array.push(arr[i]);
+        }
+        return array;
+      }
+}
    
 
 

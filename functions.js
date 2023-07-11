@@ -109,5 +109,85 @@ const mul = (x) => {
           b = c;
         }
         return b;
-      }
+    }
+}
+{
+    //Сумма с помощью замыканий sum(a)(b) = a+b.
+
+    function getSum (a) {
+        return function (b) {
+            return a+b
+        }
+    }
+   console.log (getSum (5)(8))
+}
+{
+    //Фильтрация с помощью замыкания
+    /*
+    У нас есть встроенный метод arr.filter(f) для массивов. Он фильтрует все элементы с помощью функции f. Если она возвращает true, то элемент добавится в возвращаемый массив.
+
+    Сделайте набор «готовых к употреблению» фильтров:
+
+    inBetween(a, b) – между a и b (включительно).
+    inArray([...]) – находится в данном массиве.
+    Они должны использоваться таким образом:
+
+    arr.filter(inBetween(3,6)) – выбирает только значения между 3 и 6 (включительно).
+    arr.filter(inArray([1,2,3])) – выбирает только элементы, совпадающие с одним из элементов массива */
+    let arr = [1, 2, 3, 4, 5, 6, 7];
+
+    function inBetween(a, b) {
+        return function (x) {
+            return x >=a && x <=b
+        }
+    }
+    console.log(arr.filter(inBetween(3,6)));
+
+    function inArray(arr) {
+        return function (x) {
+            return arr.includes(x);
+        }
+    }
+    console.log(arr.filter(inArray([1, 2, 10])))
+
+    // Сортировать по полю
+    // У нас есть массив объектов, который нужно отсортировать:
+
+    let users = [
+    { name: "John", age: 20, surname: "Aohnson" },
+    { name: "Pete", age: 18, surname: "Peterson" },
+    { name: "Ann", age: 19, surname: "Wathaway" }
+    ];
+
+    //console.log(users.sort((a,b)=> a.name > b.name ? 1 : -1));
+    //console.log(users.sort((a, b) => a.age-b.age));
+
+    function byField(field) {
+        return function(a, b) {
+            return a[field] > b[field] ? 1 : -1;
+        }
+    }
+    //console.log (users.sort(byField('surname')));
+}
+
+{
+    function makeArmy() {
+
+        let shooters = [];
+      
+        for(let i = 0; i < 10; i++) {
+          let shooter = function() { // функция shooter
+            console.log( i ); // должна выводить порядковый номер
+          };
+          shooters.push(shooter);
+        }
+
+        return shooters;
+    }
+      
+      let army = makeArmy();//возвращает массив функций
+      
+      army[0](); // вызывает функцию из массива функций по индексу
+      army[5](); // 5
+ 
 }
