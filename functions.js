@@ -185,9 +185,26 @@ const mul = (x) => {
         return shooters;
     }
       
-      let army = makeArmy();//возвращает массив функций
-      
-      army[0](); // вызывает функцию из массива функций по индексу
-      army[5](); // 5
- 
+    let army = makeArmy();//возвращает массив функций
+    
+    army[0](); // вызывает функцию из массива функций по индексу
+    army[5](); // 5
+}
+
+{
+    function makeCounter() {
+        let count = 0;
+
+        function counter() {
+            return count++;
+        }
+        counter.set = value => count = value;
+        counter.decrease = () => --count;
+        return counter;
+    }
+    let counter = makeCounter();
+    console.log(counter()) 
+    console.log(counter.set(6)) 
+    console.log(counter.decrease())
+    console.log(counter()) 
 }

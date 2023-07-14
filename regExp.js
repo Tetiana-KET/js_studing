@@ -20,3 +20,11 @@ function countSmileys(arr) {
 
 //найти все вхождения буквы в строку, вернет массив совпадений
 str.match(new RegExp(letter, 'g'));
+
+//посчитать количество поаторяющихся символов в строке
+(text.toLowerCase().split('').sort().join('').match(/([^])\1+/g) || []).length;
+//в итоге тебе возвращается массив совпадений, где одинаковых символов 2 или больше, считается длина этого массива 
+/([^])\1+/g; 
+//[^] matches any character including newline
+//\1 matches the same text as most recently matched by the 1st capturing group
+//+ matches the previous token between one and unlimited times, as many times as possible, giving back as needed (greedy)
