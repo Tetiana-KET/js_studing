@@ -208,3 +208,59 @@ const mul = (x) => {
     console.log(counter.decrease())
     console.log(counter()) 
 }
+
+
+{
+	/**
+    Создать расширяемый калькулятор
+    Создайте функцию конструктор Calculator, которая создаёт «расширяемые» объекты калькулятора.
+
+    Во-первых, реализуйте метод calculate(str), который принимает строку типа "1 + 2" в формате «ЧИСЛО оператор ЧИСЛО» (разделено пробелами) и возвращает результат. Метод должен понимать плюс + и минус -.
+
+    let calc = new Calculator;
+
+    alert( calc.calculate("3 + 7") ); // 10
+    Затем добавьте метод addMethod(name, func), который добавляет в калькулятор новые операции. Он принимает оператор name и функцию с двумя аргументами func(a,b), которая описывает его.
+
+    Например, давайте добавим умножение *, деление / и возведение в степень **:
+
+    let powerCalc = new Calculator;
+    powerCalc.addMethod("*", (a, b) => a * b);
+    powerCalc.addMethod("/", (a, b) => a / b);
+    powerCalc.addMethod("**", (a, b) => a ** b);
+
+    let result = powerCalc.calculate("2 ** 3");
+    alert( result ); // 8
+    */
+
+    function Calculator () {
+        this.methods = {
+            "+" : (a, b) => a+b,
+            "-" : (a, b) => a-b
+        };
+
+        this.calculate = function (str) {
+            let items = str.split(' '),
+            a = +items[0],
+            operator = items[1],
+            b = +items[2]
+
+            if (!this.methods[operator] || isNaN(a) || isNaN(b)) return NaN;
+
+            return this.methods[operator](a, b);
+        } 
+
+        this.addMethod = function(name, func) {
+            this.methods[name] = func;
+        }
+    }
+    let calc = new Calculator();
+    let powerCalc = new Calculator();
+    powerCalc.addMethod('*', (a, b) => a * b);
+    powerCalc.addMethod('/', (a, b) => a / b);
+    powerCalc.addMethod('**', (a, b) => a ** b);
+
+    console.log(powerCalc.calculate('9 / 3'));
+}
+
+

@@ -669,6 +669,153 @@ console.log(sortByHeight([-1, 150, 190, 170, -1, -1, 160, 180]))// [-1, 150, 19
       }
 }
    
+/*{function sumInput() {
+	const arr = [];
+	while (true) {
+        let value = prompt('enter number')
+        if (value === ''|| value=== null || !isFinite(value)) {
+            break;
+        }
+        arr.push(+value)
+    }
+    let sum = 0;
+    
+    return arr.reduce((c,a) => c+a,[]);
+}
+console.log(sumInput());
+}*/
+
+{
+    function getMaxSubSum(arr) {
+    let sum = 0;
+    let partialSum = 0;
+
+        for (let num of arr) {
+            partialSum += num;
+            sum = Math.max(sum, partialSum);
+            if (partialSum < 0) {
+                partialSum=0;
+            }
+        }
+        return sum;
+    }
+
+    console.log( getMaxSubSum([-1, 2, 3, -9])); // 5
+    console.log( getMaxSubSum([-1, 2, 3, -9, 11]) ); // 11
+    console.log( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
+    console.log( getMaxSubSum([1, 2, 3]) ); // 6
+    console.log( getMaxSubSum([-1, -2, -3]) ); // 0
+}
+
+{
+	/*
+    Напишите функцию camelize(str), которая преобразует строки вида «my-short-string» в «myShortString».
+
+    То есть дефисы удаляются, а все слова после них получают заглавную букву.
+
+    Примеры:
+
+    camelize("background-color") == 'backgroundColor';
+    camelize("list-style-image") == 'listStyleImage';
+    camelize("-webkit-transition") == 'WebkitTransition';
+    */
+    function camelize(str) {
+     console.log( str.split('-').map((item,i)=> i === 0 ? item : item[0].toUpperCase()+item.slice(1)).join('') )
+    }
+    camelize('list-style-image');
+    camelize('background-color');
+    camelize('-webkit-transition');
+}
+{
+	/**
+     * Напишите функцию filterRange(arr, a, b), которая принимает массив arr, ищет элементы со значениями больше или равными a и меньше или равными b и возвращает результат в виде массива.
+
+        Функция должна возвращать новый массив и не изменять исходный.
+
+        Например:
+
+        let arr = [5, 3, 8, 1];
+
+        let filtered = filterRange(arr, 1, 4);
+
+        alert( filtered ); // 3,1 (совпадающие значения)
+
+        alert( arr ); // 5,3,8,1 (без изменений)
+    */
+   function filterRange(arr, a, b) {
+    console.log( arr.filter((item)=> b >= item >= a ) )
+   }
+   filterRange([5, 3, 8, 1], 1, 4);
+}
+{
+	/**
+     * Напишите функцию filterRangeInPlace(arr, a, b), которая принимает массив arr и удаляет из него все значения кроме тех, 
+     * которые находятся между a и b. То есть, проверка имеет вид a ≤ arr[i] ≤ b.
+
+        Функция должна изменять принимаемый массив и ничего не возвращать.
+    */
+	function filterRangeInPlace(arr, a, b) {
+		arr.forEach((val, i) => {
+			if (val < a || val > b)  {
+				arr.splice(i, 1);
+			}
+		});
+		console.log(arr);
+	}
+	filterRangeInPlace([5, 3, 8, 1], 1, 4);
+}
+
+{
+	let vasya = { name: 'Вася', surname: 'Пупкин', id: 1 };
+	let petya = { name: 'Петя', surname: 'Иванов', id: 2 };
+	let masha = { name: 'Маша', surname: 'Петрова', id: 3 };
+
+	let users = [vasya, petya, masha];
+
+	let usersMapped = users.map(user => ({
+		fullName: `${user.name} ${user.surname}`,
+		id: user.id,
+	}));
+}
+{
+   /* Создайте объект с ключами из массива
+    Допустим, мы получили массив пользователей в виде {id:..., name:..., age:... }.
+
+    Создайте функцию groupById(arr), которая создаст из него объект с id в качестве ключа и элементами массива в качестве значений.
+
+    Например:
+
+    let users = [
+    {id: 'john', name: "John Smith", age: 20},
+    {id: 'ann', name: "Ann Smith", age: 24},
+    {id: 'pete', name: "Pete Peterson", age: 31},
+    ];
+
+    let usersById = groupById(users);
+
+    // после вызова у нас должно получиться:
+
+    usersById = {
+    john: {id: 'john', name: "John Smith", age: 20},
+    ann: {id: 'ann', name: "Ann Smith", age: 24},
+    pete: {id: 'pete', name: "Pete Peterson", age: 31},
+    }
+*/
+    let users = [
+        { id: 'john', name: 'John Smith', age: 20 },
+        { id: 'ann', name: 'Ann Smith', age: 24 },
+        { id: 'pete', name: 'Pete Peterson', age: 31 },
+    ];
+
+    function groupById (arr) {
+        return arr.reduce((accObj, curUser) => {
+            accObj[curUser.id] = curUser;
+            return accObj;
+        },{})
+    };
+    let usersById = groupById(users);
+    console.log(usersById);
+}
 
 
 console.log(`
