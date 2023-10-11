@@ -1,64 +1,136 @@
 //Линейный — O(n) - сложность алгоритма линейно растет с увеличением входного массива
-//Логарифмический — O( log n)
-//Линеарифметический — O(n·log n)
-//Квадратичный — O(n 2)
+//Логарифмический — O( log2 n) (грубо корень квадратный из числа )
+//Линеарифметический — O(n*log2 n)
+//Квадратичный — O(n 2) во второй степени n*n
 
-//Пузырьковая сортировка
+//АЛГОРИТМЫ СОРТИРОВКИ
+ 
+//сортировка выбором 0(n*n) чуть меньше, тут еще есть коэфициэнт, но он не указывается при оценке.
+{
+  const arr = [5, 4, 9, 2, 4, 7, 5, -6, 3, -1, 8, 1, -3, 7, 9, 5, 4, 7, 0];
+  function selectionSort (arr) {
 
-function bubbleSort(arr) {
-  const n = arr.length;
-  for (let i = 0; i < n - 1; i++) {
-    for (let j = 0; j < n - 1 - i; j++) {
-      if (arr[j + 1] < arr[j]) {
-        let t = arr[j + 1];
-        arr[j + 1] = arr[j];
-        arr[j] = t;
+    for (let i=0; i<arr.length; i++) {
+
+      let minIndex = i;
+
+      for (let j = i+1; j<arr.length; j++) {
+        if (arr[j] < arr[minIndex]) {
+          minIndex = j;
+        }
       }
+      let temp = arr[i];
+      arr[i] = arr[minIndex];
+      arr[minIndex] = temp;
     }
+    return arr;
   }
-  return arr;
+  console.log(selectionSort(arr));
 }
-//bubbleSort(arr);
 
-//Быстрая сортировка - Бинарный поиск
 
-function quickSort(arr) {
-  if (arr.length == 0) return [];
-  let a = [],
-    b = [],
+//Пузырьковая сортировка самый не эффективный, сложность 0(n*n) 
+
+{  
+ const arr = [5, 4, 9, 2, 4, 7, 5, -6, 3, -1, 8, 1, -3, 7, -9, 20, 5, 4, 7, 0];
+
+  function bubbleSort(arr) {
+
+    for (let i = 0; i < arr.length; i++) {
+
+			for (let j = i + 1; j < arr.length; j++) {
+
+				if (arr[j] < arr[i]) {
+					let temp = arr[j];
+					arr[j] = arr[i];
+					arr[i] = temp;
+				}
+			}
+		}
+    return arr;
+  }
+  console.log(bubbleSort(arr));
+}
+
+/*Быстрая сортировка или сортировка Хоара  O(log2n*n) 
+относится к алгоритмам «разделяй и властвуй». Один из наиболее эффективных алгоритмов.
+
+Алгоритм состоит из трёх шагов:
+
+1. Выбрать элемент из массива. Назовём его опорным.
+Сравнить все остальные элементы с опорным и переставить их в массиве так, чтобы разбить массив на три непрерывных отрезка, 
+следующих друг за другом: «элементы меньшие опорного», «равные» и «большие опорного».
+Для отрезков «меньших» и «больших» значений выполнить рекурсивно ту же последовательность операций, если длина отрезка больше единицы.
+
+На практике массив обычно делят не на три, а на две части: например, «меньшие опорного» и «равные и большие»;
+такой подход в общем случае эффективнее, так как упрощает алгоритм разделения.
+
+Разбиение: перераспределение элементов в массиве таким образом, что элементы, меньшие опорного, 
+помещаются перед ним, а большие или равные - после.
+*/
+
+{  
+  const arr = [5, 4, 7, 5, -6, 3, -1];
+  function quickSort(arr) {
+    if (arr.length == 0) return [];
+    let less = [],
+    greater = [],
     p = arr[0];
 
-  for (let i = 1; i < arr.length; i++) {
-    if (arr[i] < p) a.push(arr[i]);
-    else b.push(arr[i]);
+    for (let i = 1; i < arr.length; i++) {
+      if (arr[i] < p) less.push(arr[i]);
+      else greater.push(arr[i]);
+    }
+    return quickSort(less).concat(p, quickSort(greater));
   }
-  return quickSort(a).concat(p, quickSort(b));
+  console.log(quickSort(arr))
 }
-//quickSort(arr);
 
-//const arr = [-1, 0, 1, 2, 3, 4, 6, 100, 10000];
 
-function binarySearchIterationMethod(arr, i) {
-  let left = 0;
-  let right = arr.length - 1;
-  let mid;
+//ПОИСК
+// ЛИНЕЙНЫЙ ПОИСК -   O(n), where ''n'' - is an amount of elements
+{
+const arr= [1,2,3,4,5,6,7,8,9,10,11,12,15,18,20,30,50];
 
-  while (left <= right) {
-    mid = Math.floor((right + left) / 2);
-
-    if (arr[mid] === i) {
-      return mid;
-    } else if (arr[mid] > i) {
-      right = mid - 1;
-    } else {
-      left = mid + 1;
+function linearSearch (array, item) {
+  for(let i=0; i<array.length; i++) {
+    if(array[i]===item) {
+      return i;
     }
   }
-
   return -1;
 }
+console.log(linearSearch(arr, 14));
+}
 
-//binarySearchIterationMethod(arr, 100); // 7
+//бинарный поиск - самый эффективный, но только для уже отсортированного массива O(log2n)
+//const arr = [-1, 0, 1, 2, 3, 4, 6, 100, 10000];
+{
+	const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
+
+	function binarySearch(val, arr) {
+		let start = 0;
+		let end = arr.length - 1;
+
+		while (start <= end) {
+			const middle = Math.floor((end + start) / 2);
+
+			if (val === arr[middle]) {
+				return middle;
+			}
+
+			if (val < arr[middle]) {
+				end = middle - 1;
+			} else {
+				start = middle + 1;
+			}
+		}
+		// return -1;
+		return 'no such element';
+	}
+
+	console.log(`index of element you search is [${binarySearch(17, arr)}]`);
+}
 
 function binarySearchRecursiveMethod(arr, i, left = 0, right = arr.length - 1) {
   if (left > right) return -1;
@@ -75,35 +147,6 @@ function binarySearchRecursiveMethod(arr, i, left = 0, right = arr.length - 1) {
 }
 
 //binarySearchRecursiveMethod(arr, 5); // -1
-
-const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-function binarySearch(val, arr) {
-  let min = 0;
-  let max = arr.length - 1;
-
-  while (min <= max) {
-
-    console.log('try again');
-    
-    const middle = min + Math.floor((max - min) / 2);
-
-    if (val === arr[middle]) {
-      return middle;
-    }
-
-    if (val < arr[middle]) {
-      max = middle - 1;
-    } else {
-      min = middle + 1;
-    }
-  }
-  return -1
-}
-
-
-
-console.log(binarySearch(7, arr));
 
 
 // Массив Эффективность(«О» большое):
