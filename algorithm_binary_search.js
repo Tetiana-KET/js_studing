@@ -85,6 +85,20 @@
   }
   console.log(quickSort(arr))
 }
+{
+  const arr = [5, 4, 23, 85, 7, 5, -6, 3, -1];
+  function quickSort (arr) {
+    
+    if (arr.length <=1) return arr;
+
+    const pivot = arr[0];
+    const less = arr.slice(1).filter((e)=> e < pivot);
+    const more = arr.slice(1).filter((e)=> e > pivot);
+
+    return quickSort(less).concat(pivot, quickSort(more));
+  }
+  console.log(quickSort(arr));
+}
 
 
 //ПОИСК
