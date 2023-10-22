@@ -340,3 +340,36 @@ let salaries = {
     } 
     // console.log(sumSalaries(company))//6700
 }
+{
+    /*Максимальная зарплата
+    У нас есть объект salaries с зарплатами:
+
+   
+    Создайте функцию topSalary(salaries), которая возвращает имя самого высокооплачиваемого сотрудника.
+
+    Если объект salaries пустой, то нужно вернуть null.
+    Если несколько высокооплачиваемых сотрудников, можно вернуть любого из них.
+    P.S. Используйте Object.entries и деструктурирование, чтобы перебрать пары ключ/значение.
+    */
+    const salaries = {
+        "John": 100,
+        "Pete": 300,
+        "Mary": 250,
+        "Boss": 1250
+    };
+
+    function findTopWorker () {        
+        
+        let max = 0;
+        let topName = null;
+
+        for (let [name, salary] of Object.entries(salaries)) {
+            if (salary > max) {
+                max = salary;
+                topName = name;
+            }
+        }
+        return topName;
+    }
+    console.log(findTopWorker(salaries));
+}
