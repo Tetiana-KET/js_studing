@@ -32,7 +32,7 @@
 //Пузырьковая сортировка самый не эффективный, сложность 0(n*n) 
 
 {  
- const arr = [5, 4, 9, 2, 4, 7, 5, -6, 3, -1, 8, 1, -3, 7, -9, 20, 5, 4, 7, 0];
+ const arr = [5, 4, 9, 2, 14, 7, 1, -6, 3, -1, 8, 10, 11, -3, 98, -9, 20, 6, 15, 54, 0];
 
   function bubbleSort(arr) {
 
@@ -41,9 +41,10 @@
 			for (let j = i + 1; j < arr.length; j++) {
 
 				if (arr[j] < arr[i]) {
-					let temp = arr[j];
-					arr[j] = arr[i];
-					arr[i] = temp;
+          [arr[j], arr[i]] = [arr[i], arr[j]];
+					// let temp = arr[j];
+					// arr[j] = arr[i];
+					// arr[i] = temp;
 				}
 			}
 		}
