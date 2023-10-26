@@ -262,5 +262,96 @@ const mul = (x) => {
 
     console.log(powerCalc.calculate('9 / 3'));
 }
+{
+    // кеширование данных
+    function calculate (v) {
+        // здесь могут быть ресурсоёмкие вычисления
+        alert(`Called with ${v}`);
+        return v;
+    }
+
+    function cachingData (func) { //декоратор, специальная функция, которая принимает другую функцию и изменяет её поведение.
+        let cache = new Map();
+
+        return function (v) {
+
+            if (cache.has(v)) {// если кеш содержит такой v,
+                return cache.get(v); // читаем из него результат
+            }
+
+            let result = func(v); // иначе, вызываем функцию
+
+            cache.set(v, result); // и кешируем (запоминаем) результат
+
+            return result;
+        };
+    }
+    calculate = cachingData(calculate);
+}
 
 
+// для работы с методами объекта
+{
+	// сделаем worker.slow кеширующим
+	let worker = {
+		someMethod() {
+			return 1;
+		},
+
+		slow(x) {
+			// здесь может быть страшно тяжёлая задача для процессора
+			alert('Called with ' + x);
+			return x * this.someMethod(); // (*)
+		},
+	};
+
+    function cacheData (func) {
+        let cache = new Map();
+
+        return function (x) {
+            if (cache.has(x)) {
+               return cache.get(x);
+            }
+
+            let result = func.call(this, x);//декоратор вызывает оригинальную функцию как func(x) из метода,
+            //декоратор передаёт вызов оригинальному методу, но без контекста. Необходимо привязать контекст
+            //использовать call в обёртке для передачи контекста в исходную функцию:
+            cache.set(x, result);
+            return result;
+        };
+    }
+    worker.slow = cachingDecorator(worker.slow);
+}
+
+{
+	// для работы с несколькими аргументами
+
+	let worker = {
+		slow(min, max) {
+			alert(`Called with ${min},${max}`);
+			return min + max;
+		},
+	};
+
+	function cacheData(func, hashFunc) {
+		let cache = new Map();
+
+		return function () {
+			let key = hash(arguments);
+			if (cache.has(key)) {
+				return cache.get(key);
+			}
+
+			let result = func.call(this, ...arguments);
+			cache.set(key, result);
+			return result;
+		};
+	}
+
+	function hash(arguments) {
+		return [].join.call(arguments);
+	}
+
+	worker.slow = cachingDecorator(worker.slow, hash);
+	//заимствуем) метод join из обычного массива [].join. И используем [].join.call, чтобы выполнить его в контексте arguments.
+}
