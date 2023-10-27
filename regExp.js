@@ -28,3 +28,8 @@ str.match(new RegExp(letter, 'g'));
 //[^] matches any character including newline
 //\1 matches the same text as most recently matched by the 1st capturing group
 //+ matches the previous token between one and unlimited times, as many times as possible, giving back as needed (greedy)
+
+//Заменяет последнюю запятую в строке - 82 days, 17 hours, 23 minutes, 38 seconds
+//82 days, 17 hours, 23 minutes and 38 seconds
+replace(/,([^,]*)$/, ' and' + '$1');
+replace(/,\s(?=[\d\s\w]*$)/, ' and ')

@@ -355,3 +355,59 @@ const mul = (x) => {
 	worker.slow = cachingDecorator(worker.slow, hash);
 	//заимствуем) метод join из обычного массива [].join. И используем [].join.call, чтобы выполнить его в контексте arguments.
 }
+
+{
+	// debounce(f, ms) – это обёртка, которая откладывает вызовы f, пока не пройдёт ms миллисекунд бездействия
+	//(без вызовов, «cooldown period»), а затем вызывает f один раз с последними аргументами.
+	//Вызов debounce возвращает обёртку.
+	//При вызове он планирует вызов исходной функции через указанное количество ms и отменяет предыдущий такой тайм-аут.
+	// Обёрнутая в debounce функция ждёт мс после последнего вызова, а затем запускает: f с последними аргументами.
+	function debounce(f, ms) {
+		let timeout;
+		return function () {
+			clearTimeout(timeout);
+			timeout = setTimeout(() => f.apply(this, arguments), ms);
+		};
+	}
+}
+
+{
+    /*«тормозящий» декоратор throttle(f, ms), который возвращает обёртку.
+
+    При многократном вызове он передает вызов f не чаще одного раза в ms миллисекунд.
+
+    По сравнению с декоратором debounce поведение совершенно другое:
+
+    debounce запускает функцию один раз после периода «бездействия». Подходит для обработки конечного результата.
+    throttle запускает функцию не чаще, чем указанное время ms. Подходит для регулярных обновлений, которые не должны быть слишком частыми.*/
+
+    function throttle (f, ms) {
+        let isThrottled = false;
+        let savedThis, savedArgs;
+
+        function wrapper () {
+            if (isThrottled) {// после первого вызова, запоминаем аргументы последнего вызова для вызова после задержки
+                savedThis = this;
+                savedArgs = arguments;
+                return;
+            }
+            //Во время первого вызова обёртка просто вызывает func и устанавливает состояние задержки (isThrottled = true).
+            f.apply(this, arguments)
+
+            isThrottled = true;
+
+            setTimeout(function () {
+                isThrottled = false;
+
+                if(savedArgs) {
+                    // если были вызовы, savedThis/savedArgs хранят последний из них
+                    // рекурсивный вызов запускает функцию и снова устанавливает время задержки
+                    wrapper.apply(savedThis, savedArgs);
+					savedThis = savedArgs = null;
+                }
+            }, ms)
+        }
+
+        return wrapper;
+    }
+}

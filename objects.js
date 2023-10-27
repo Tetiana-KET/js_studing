@@ -3,6 +3,7 @@ Object.keys(obj) – возвращает массив ключей.
 Object.values(obj) – возвращает массив значений.
 Object.entries(obj) – возвращает массив пар [ключ, значение].
 Object.fromEntries(array) - преобразовать массив обратно в объект
+
 */
 
 let firstPart = 'likes';
@@ -56,7 +57,7 @@ let user = makeUserInfo('Вася', 25);
 // console.log(user);//{name: 'Вася', age: 25}
 
 //При копировании объекта в другую переменную,
-//сам объект не копируэтся.Мы делаем дубликат ключа, сам объект остается тем же.
+//сам объект не копируется. Мы делаем дубликат ключа, сам объект остается тем же.
 
 // Клонирование и объединение объектов, Object.assign
 
@@ -64,6 +65,8 @@ let userCopy = Object.assign({}, userInfo);//копируем объект userI
 //console.log(userCopy);//{name: 'Tatiana', adress: {…}, sex: 'male', education: {…}}
 userCopy.sex = 'female';
 //console.log(userCopy);//{name: 'Tatiana', adress: {…}, sex: 'female', education: {…}}
+
+//let clone = Object.defineProperties({}, Object.getOwnPropertyDescriptors(obj)); клонировать (копировать) объект
 
 //ВЫВЕСТИ ВСЕ КЛЮЧИ
 
