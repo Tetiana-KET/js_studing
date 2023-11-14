@@ -33,3 +33,6 @@ str.match(new RegExp(letter, 'g'));
 //82 days, 17 hours, 23 minutes and 38 seconds
 replace(/,([^,]*)$/, ' and' + '$1');
 replace(/,\s(?=[\d\s\w]*$)/, ' and ')
+
+//удалить все согласные. Все кроме гласных
+str.replaceAll(/[^aeiouy]/gi, '');

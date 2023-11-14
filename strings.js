@@ -112,6 +112,51 @@ function wordCount(str) { // делим строку на масив элеме�
 //[4] + 2(сдвиг) % length (5) = [1] - остаток от деления 6/5 = 1/1
 // тут понятнее - https://www.youtube.com/watch?v=KST4bGAH-8Y
 
+{
+	/**
+	 * Encode specified string with ROT13 cipher
+	 * See details:  https://en.wikipedia.org/wiki/ROT13
+	 *
+	 * @param {string} str - The input string.
+	 * @return {string} - The ROT13 encoded string.
+	 *
+	 * @example
+	 *
+	 *   'hello' => 'uryyb'
+	 *   'Why did the chicken cross the road?' => 'Jul qvq gur puvpxra pebff gur ebnq?'
+	 *   'Gb trg gb gur bgure fvqr!' => 'To get to the other side!'
+	 *   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+	 *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
+	 *
+	 */
+	function encodeToRot13(str) {
+		const alphabet =
+			'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMabcdefghijklmnopqrstuvwxyzabcdefghijklm';
+		return str.replace(
+			/[a-zA-Z]/g,
+			char => alphabet[alphabet.indexOf(char) + 13]
+		);
+	}
+
+	/**
+     * function encodeToRot13(str) {
+		return str.replace(/[a-z]/gi, char => String.fromCharCode(char.charCodeAt(0) + (letter.toLowerCase() <= 'm' ? 13 : -13)));
+	}
+     */
+	/**
+    * function encodeToRot13(str) {
+        let result = '';
+        for (let i = 0; i < str.length; i += 1) {
+            let code = str[i].charCodeAt(0);
+            if ((code >= 65 && code < 78) || (code >= 97 && code < 110)) code += 13;
+            else if ((code >= 78 && code <= 90) || (code >= 110 && code <= 122))
+            code -= 13;
+            result += String.fromCharCode(code);
+        }
+        return result;
+    }
+    */
+}
 
 
 // Шифр Виджинера - сдвигаем каждый символ текста на столько, на сколько сдвинут символ соответствующего индекса в ключе
@@ -334,7 +379,7 @@ function decode(expr) {
 //https://snipp.ru/jquery/remove-symbols-js
 //str = str.replace(/[aeiouy]/gi, '')
 
-// ПОСЧИТАТЬ КОЛИЧЕСТВО ОБИНАКОВЫХ БУКЫ В СТРОКАХ
+// ПОСЧИТАТЬ КОЛИЧЕСТВО ОДИНАКОВЫХ БУКВ В СТРОКАХ
 /**
  * Given two strings, find the number of common characters between them.
  *
@@ -391,3 +436,162 @@ function encodeLine(s) {
      
 
 console.log(encodeLine("aabbbc"));//2a3bc(2a3bc)
+
+{
+/**
+ * Returns the number of vowels in the string. Посчитать количество гласных
+ * 
+ * Vowels: 'a', 'e', 'i', 'o', 'u', 'y', 'A', 'E', 'I', 'O', 'U', 'Y'.
+ *
+ * @param {string} str - The input string.
+ * @return {number} - The number of vowels in the string.
+ *
+ * @example:
+ *   countVowels('apple')  => 2
+ *   countVowels('banana') => 3
+ *   countVowels('cherry') => 2
+ *   countVowels('aEiOu') => 5
+ *   countVowels('XYZ') => 1
+ *
+ *   const withoutVowels = str.replaceAll(/[^aeiouy]/gi, '');
+ *   return withoutVowels.length;
+ * 
+ *   return str
+    .toLowerCase()
+    .split('')
+    .reduce((a, c) => (vowels.includes(c) ? (a += 1) : a), 0);
+ */
+	function countVowels(str, vowels = 'aeiouy') {
+		let result = 0;
+		str
+			.toLowerCase()
+			.split('')
+			.forEach(char => {
+				if (vowels.includes(char)) {
+					result += 1;
+				}
+			});
+		return result;
+	}
+}
+
+{    /**
+     * Returns true if the value is a string, otherwise returns false.
+     * ЯВЛЯЕТСЯ ЛИ ПАРАМЕТР "СТРОКОЙ" ПРОВЕРКА НА СТРОКУ
+     * @param {string} value - The value to check if it's a string.
+     * @return {boolean} - True if the value is a string, false otherwise.
+     *
+     * @example
+     *   isString() => false
+     *   isString(null) => false
+     *   isString([]) => false
+     *   isString({}) => false
+     *   isString('test') => true
+     *   isString(new String('test')) => true
+     * Object.prototype.constructor.name - didn`t work, why?
+     * Object.prototype.toString.call(obj)
+     *  Using instanceof: This approach only works with string objects (e.g., new String('test')).
+     * typeof value === 'string' || value instanceof String
+     */
+    function isString(value) {
+    return Object.prototype.toString.call(value) === '[object String]';
+    }
+}
+
+{    /**
+     * Remove the first occurrence of a substring from a string.
+     * УДАЛИТЬ ПЕРВОЕ ВХОЖДЕНИЕ ПОДСТРОКИ В СТРОКУ
+     * 
+     * @param {string} str - The input string.
+     * @param {string} value - The substring to remove from the string.
+     * @return {string} - The string with the first occurrence of the substring removed.
+     *
+     * @example
+     *   removeFirstOccurrences('To be or not to be', 'be') => 'To  or not to be'.
+     *   removeFirstOccurrences('I like legends', 'end') => 'I like legs'.
+     *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
+     * str.replace(`${value}`, '') doesn`t work, why?
+     *
+     */
+    function removeFirstOccurrences(str, value) {
+    const i = str.indexOf(value);
+    return i !== -1 ? `${str.slice(0, i)}${str.slice(i + value.length)}` : str;
+    }
+}
+
+{
+	/**
+	 * Returns true if the string is a palindrome; otherwise false.
+	 * https://en.wikipedia.org/wiki/Palindrome
+	 *
+	 * @param {string} str - The input string.
+	 * @return {bool} - True if the string is a palindrome, false otherwise.
+	 *
+	 * @example:
+	 *   isPalindrome('madam') => true
+	 *   isPalindrome('racecar') => true
+	 *     => false
+	 *   isPalindrome('No lemon, no melon') => true
+	 */
+	function isPalindrome(str) {
+		return (
+			str.toLowerCase().replace(/[ ,.!?]/g, '') ===
+			str
+				.replace(/[ ,.!?]/g, '')
+				.toLowerCase()
+				.split('')
+				.reverse()
+				.join('')
+		);
+	}
+}
+
+{
+	/**
+	 * Returns true if the string is a palindrome; otherwise false.
+	 * https://en.wikipedia.org/wiki/Palindrome
+	 * ПАЛИНДРОМ
+	 *
+	 * @param {string} str - The input string.
+	 * @return {bool} - True if the string is a palindrome, false otherwise.
+	 *
+	 * @example:
+	 *   isPalindrome('madam') => true
+	 *   isPalindrome('racecar') => true
+	 *   isPalindrome('apple') => false  => false
+	 *   isPalindrome('No lemon, no melon') => true
+	 */
+	function isPalindrome(str) {
+		return (
+			str.toLowerCase().replace(/[ ,.!?]/g, '') ===
+			str
+				.replace(/[ ,.!?]/g, '')
+				.toLowerCase()
+				.split('')
+				.reverse()
+				.join('')
+		);
+	}
+}
+/**
+ * Find the longest word in the sentence. If there are multiple longest words, самое длинное слово
+ * the function returns the first one encountered.
+ *
+ * @param {string} sentence - The input sentence.
+ * @returns {string} - The longest word in the sentence.
+ *
+ * @example:
+ *   findLongestWord('The quick brown fox') => 'quick'
+ *   findLongestWord('A long and winding road') => 'winding'
+ *   findLongestWord('No words here') => 'words'
+ * 
+ * function findLongestWord(sentence) {
+  const copiedStr = sentence.slice();
+  return copiedStr.split(' ').sort((a, b) => b.length - a.length)[0];
+}
+ */
+function findLongestWord(sentence) {
+  return sentence
+    .split(' ')
+    .reduce((acc, cur) => (cur.length > acc.length ? cur : acc), '');
+}
