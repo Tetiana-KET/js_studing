@@ -133,3 +133,6 @@ h2 {
 	background-color: rgba(145, 145, 145, 0.473);
 	padding: 15px;
 }
+.wrapper {
+  display: grid;
+}

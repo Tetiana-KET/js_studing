@@ -101,3 +101,214 @@ createDreamTeam(['Matt', 'Ann', 'Dmitry', 'Max']) //=> 'ADMM'
     const springDate = new Date(2020, 02, 31)
     getSeason(springDate)
 }
+{
+/**
+ * Given an array of domains, return the object with the appearances of the DNS.
+ *
+ * @param {Array} domains
+ * @return {Object}
+ *
+ * @example
+ * domains = [
+ *  'code.yandex.ru',
+ *  'music.yandex.ru',
+ *  'yandex.ru'
+ * ]
+ *
+ * The result should be the following:
+ * {
+ *   '.ru': 3,
+ *   '.ru.yandex': 3,
+ *   '.ru.yandex.code': 1,
+ *   '.ru.yandex.music': 1,
+ * }
+ *  на вход получаем массив, пройтись по массиву перебором и поделить
+ *  каждый домен на массив поддоменов
+ *  вернуть нужно объект
+ *  ключи объекта - каждый кусочек поддомена до точки
+ *  значение ключа - количество вхождений
+ */
+function getDNSStats(domains) {
+	const result = {};
+	const domainsReversed = domains.map(domain => {
+		return domain.split('.').reverse();
+	});
+	/*
+  [
+  [ru, yandex, code],
+  [ru, yandex, music],
+  [ru, yandex]
+  ]
+  */
+	domainsReversed.forEach(domain => {
+		let dns = '';
+
+		domain.forEach(subDomain => {
+			//[ru, yandex, code],
+			dns += `.${subDomain}`;
+			//.ru
+			//.ru.yandex
+			//.ru.yandex.code
+
+			result[dns] = result[dns] ? result[dns] + 1 : 1;
+		});
+	});
+	return result;
+}
+  getDNSStats([
+  'code.yandex.ru',
+  'music.yandex.ru',
+  'yandex.ru'
+  ]);
+}
+
+{
+	/**
+	 * Create a repeating string based on the given parameters
+	 *
+	 * @param {String} str string to repeat
+	 * @param {Object} options options object
+	 * @return {String} repeating string
+	 *
+	 *
+	 * @example
+	 *
+	 * repeater('STRING', { repeatTimes: 3, separator: '**', addition: 'PLUS', additionRepeatTimes: 3, additionSeparator: '00' })
+	 * => 'STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS'
+	 *
+	 */
+  function repeater(str, options) {
+    const {
+      repeatTimes = 1,
+      separator = '+',
+      addition = '',
+      additionRepeatTimes = 1,
+      additionSeparator = '|',
+    } = options;
+
+    return Array(repeatTimes)
+      .fill(
+        `${String(str)}${Array(additionRepeatTimes)
+          .fill(String(addition))
+          .join(additionSeparator)}`
+      )
+      .join(separator);
+  }
+
+	// repeater('la', { repeatTimes: 3 }); //  'la+la+la');
+	// repeater('single', { repeatTimes: 1 }); // 	 'single');
+	// repeater('12345', { repeatTimes: 5 }); // '12345+12345+12345+12345+12345');
+	// repeater('la', { repeatTimes: 3, separator: 's' }); // 			'laslasla');
+	// repeater('point', { repeatTimes: 3, separator: '&&&' }); // 		'point&&&point&&&point');
+  // repeater('12345', { repeatTimes: 5, separator: '3 words separator' })
+	//'123453 words separator123453 words separator123453 words separator123453 words separator12345';
+			repeater('la', {
+				repeatTimes: 3,
+				separator: 's',
+				addition: '+',
+				additionRepeatTimes: 1,})
+	// 		,'la+sla+sla+');
+}
+
+{
+/**
+ * In the popular Minesweeper game you have a board with some mines and those cells
+ * that don't contain a mine have a number in it that indicates the total number of mines
+ * in the neighboring cells. Starting off with some arrangement of mines
+ * we want to create a Minesweeper game setup.
+ *
+ * @param {Array<Array>} matrix
+ * @return {Array<Array>}
+ *
+ * @example
+ * matrix = [
+ *  [true, false, false],
+ *  [false, true, false],
+ *  [false, false, false]
+ * ]
+ *
+ * The result should be following:
+ * [
+ *  [1, 2, 1],
+ *  [2, 1, 1],
+ *  [1, 1, 1]
+ * ]
+ */
+
+matrix = [
+  //y       y      y
+   [true, false, false],//x
+   [false, true, false],//x
+   [false, false, false]//x
+  ];
+
+	function minesweeper(matrix) {
+		const result = [];
+    for (let x = 0; x < matrix.length; x += 1) {
+      result.push([]);
+
+      for (let y = 0; y < matrix[x].length; y +=1) {
+				result[x][y] = 0; // fill every cell with zero
+
+				//top row
+				if (matrix[x - 1] !== undefined) {
+					if (matrix[x - 1][y]) {
+						result[x][y] += 1;
+					}
+				}
+
+				//bottom row
+				if (matrix[x + 1] !== undefined) {
+					if (matrix[x + 1][y]) {
+						result[x][y] += 1;
+					}
+				}
+
+				//right edge
+				if (matrix[x][y + 1] !== undefined) {
+					if (matrix[x][y + 1]) {
+						result[x][y] += 1;
+					}
+				}
+
+				//left edge
+				if (matrix[x][y - 1] !== undefined) {
+					if (matrix[x][y - 1]) {
+						result[x][y] += 1;
+					}
+				}
+
+				//DIAGONAL
+				//top right
+          if (matrix[x - 1] !== undefined) {
+						if (matrix[x - 1][y + 1]) {
+							result[x][y] += 1;
+						}
+					}
+
+				//top left
+          if (matrix[x-1] !== undefined) {
+						if (matrix[x-1][y - 1]) {
+							result[x][y] += 1;
+						}
+					}
+				//bottom right
+          if (matrix[x + 1] !== undefined) {
+						if (matrix[x + 1][y + 1]) {
+							result[x][y] += 1;
+						}
+					}
+
+				//bottom left
+        if (matrix[x + 1] !== undefined) {
+					if (matrix[x + 1][y - 1]) {
+						result[x][y] += 1;
+					}
+				}
+			}
+
+    }
+   return result;
+	}
+  console.log(minesweeper(matrix));
+}
