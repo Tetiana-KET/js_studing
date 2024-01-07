@@ -59,3 +59,44 @@ Set
 -поменять порядок элементов или получить элемент напрямую по его номеру нельзя.
 Перебор объекта Set - как с помощью метода for..of, так и используя forEach - set.forEach((value, valueAgain, set) => {}
 */
+/**
+ * Rotates a matrix by 90 degrees clockwise in place.
+ * Take into account that the matrix size can be very large. Consider how you can optimize your solution.
+ * Usage of String and Array class methods is not allowed in this task.
+ *
+ * @param {number[][]} matrix - The matrix to rotate.
+ * @return {number[][]} The rotated matrix.
+ *
+ * @example:
+ *  [                 [
+ *    [1, 2, 3],        [7, 4, 1],
+ *    [4, 5, 6],  =>    [8, 5, 2],
+ *    [7, 8, 9]         [9, 6, 3]
+ *  ]                 ]
+ */
+function rotateMatrix(matrix) {
+  const matrixCopy = matrix; // copy of the original matrix
+  const result = new Array(matrix.length); // create new matrix and Fill Result Matrix with undefined
+  for (let i = 0; i < matrix.length; i += 1) {
+    result[i] = new Array(matrix.length);
+  }
+  let start = 0;
+  const end = matrix.length - 1;
+  // iterates through the original matrix and fills the result with rotated values
+  for (let i = 0; i <= end; i += 1) {
+    // outer loop
+    for (let j = 0; j <= end; j += 1) {
+      // inner loop
+      result[i][j] = matrix[end - j][start]; // end - 2 - 1 - 0; start 0, after loop start will be increased by 1
+    }
+    start += 1;
+  }
+  // copy the rotated values from result to matrixCopy.
+  for (let i = 0; i <= end; i += 1) {
+    for (let j = 0; j <= end; j += 1) {
+      matrixCopy[i][j] = result[i][j];
+    }
+  }
+
+  return matrixCopy;
+}
