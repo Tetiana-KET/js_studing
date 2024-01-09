@@ -229,3 +229,62 @@ class binarySearchTree {
     }
   }
 }
+
+{
+	/*
+  https://medium.com/devschacht/nicholas-c-zakas-computer-science-in-javascript-quicksort-afa07c0a47f0
+  const items = [4, 2, 6, 5, 3, 9];
+  Основные шаги для разделения массива:
+
+  Найти опорный элемент в массиве. Этот элемент — основа для сравнения за одни проход.
+  Установить указатель (левый указатель) с первого элемента в массиве.
+  Установить указатель (правый указатель) с последнего элемента в массиве.
+  Пока значение левого указателя в массиве меньше, чем значение опорного элемента, сдвигать левый указатель вправо (добавить 1). Продолжить пока значение левого указателя не станет большим или равным опорному.
+  Пока значение правого указателя в массиве больше, чем значение опорного элемента, сдвигать правый указатель влево (вычитать 1). Продолжать пока значение правого указателя не станет меньшим или равным значению разделителя.
+  Если левый указатель меньше или равен правому указателю, поменять значения в этих местах в массиве.
+  Сдвинуть левый указатель вправо на одну позицию и правый указатель на одну позицию влево.
+  Если левый указатель и правый указатель не встретятся, перейти к шагу 1.
+  Лучше взять в качестве разделителя элемент из середины, для нас разделителем будет 5 (длинна массива, разделенная на 2). 
+*/
+function swap(arr, l, r) {
+	const arrCopy = arr;
+	const temp = arrCopy[l];
+	arrCopy[l] = arrCopy[r];
+	arrCopy[r] = temp;
+}
+
+function partition(arr, leftPointer, rightPointer) {
+	let l = leftPointer;
+	let r = rightPointer;
+	const pivot = arr[Math.floor((leftPointer + rightPointer) / 2)];
+
+	while (l <= r) {
+		while (arr[l] < pivot) {
+			l += 1;
+		}
+		while (arr[r] > pivot) {
+			r -= 1;
+		}
+		if (l <= r) {
+			swap(arr, l, r);
+			l += 1;
+			r -= 1;
+		}
+	}
+	return l;
+}
+
+function sortByAsc(arr, leftPointer = 0, rightPointer = arr.length - 1) {
+	if (arr.length < 2) return arr;
+
+	const index = partition(arr, leftPointer, rightPointer);
+
+	if (leftPointer < index - 1) {
+		sortByAsc(arr, leftPointer, index - 1);
+	}
+	if (rightPointer > index) {
+		sortByAsc(arr, index, rightPointer);
+	}
+	return arr;
+}
+}
