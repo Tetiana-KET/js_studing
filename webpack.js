@@ -2,19 +2,30 @@
 Установить все зависимости выполнив npm i - когда в другом месте скачала с гита.
 
 Настройка Webpack - https://habr.com/ru/amp/publications/701724/
+Webpack: руководство для начинающих - https://habr.com/ru/articles/514838/
 
-mkdir webpack-demo
-cd webpack-demo
-1. npm init -y - инициализирует проэкт, создает папку package.json
+Сначала создаем каталог проэкта
+npm i -g webpack - устанавливает вебпак
+в корне проэкта папка src - 
+В каталоге src создадим файл index.js
+В каталоге src создадим файл index.html и подключить в него файл со сборкой:<script src="./dist/bundle.js"></script>
+
+инициализируем Git
+в файл .gitignore и запишем следующее: node_modules - чтоб игнорировать имена и шаблоны для файлов и каталогов, которые не нужны в репозитории. 
+
+1.Теперь, инициализируем npm, для этого в терминале введем следующую команду:
+
+npm init -y - инициализирует проэкт, создает папку node_modules и файл package-lock.json. 
+
 2. npm install webpack webpack-cli --save-dev //добавить Webpack в список зависимостей приложения
 
-3. создать простой конфигурационный файл webpack.config.js (в корне проэкта)
+3. самостоятельно создать конфигурационный файл webpack.config.js (в корне проэкта)
 
   //path — встроенный в Node.js модуль
 
   const path = require('path')
 
-  module.exports = {
+  module.exports = {// экспортируем объект конфига
     mode: 'development', // or production -  по умолчанию, если не указываем другой при сборке
     // Указываем путь до входной точки:
     entry: './src/index.js',
@@ -28,7 +39,7 @@ cd webpack-demo
   }
 
 
-4.Добавить скрипт для сборки в package.json и вызвать его:
+4.Добавить скрипт для сборки в ФАЙЛ package.json и вызвать его:
 
   {
     "scripts": {
@@ -36,7 +47,7 @@ cd webpack-demo
     }
   }
 
-  npm run build (npx)
+  npm run build (npx) - запускаем сборку, В результате, в корне проекта должен появиться каталог dist, в который скомпилируется файл bundle.js
 
 4.В корне проекта нужно создать папку src, а в ней файл index.html и подключить в него файл со сборкой:
 
@@ -61,16 +72,27 @@ cd webpack-demo
     "scripts": {// запустить npm run scriptName//(build)
       "dev": "webpack --mode development"//собирать в режиме разработки
       "build": "webpack --production",
-      "watch": "webpack --mode development --watch"
+      "watch": "webpack --mode development --watch",
+      "serve": "webpack serve"
     }
   }
   Теперь достаточно открыть файл index.html в браузере и обновлять страницу после сохранения файлов с исходным кодом.
   Для большего удобства можно воспользоваться пакетом webpack-dev-server.
 
-DEV SERVER - npm i -D webpack-dev-server
-npx webpack serve запустить сервер
+установить DEV SERVER - npm i -D webpack-dev-server
+запустить сервер - npx webpack serve 
+"Ctrl + c", остановить webpack-dev-сервер
+Нужно дополнить конфиг вебпака и добавить такую запись в конфигурационный файл:
 
-  Для Webpack написано огромное число лоадеров — для работы со стилями, с разными языками, для обработки изображений и для многого другого. Вот несколько, которые можно встретить почти в любом проекте:
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
+    compress: true,
+    port: 9000,
+  },
+
+Для Webpack написано огромное число лоадеров — для работы со стилями, с разными языками, для обработки изображений и для многого другого. Вот несколько, которые можно встретить почти в любом проекте:
 
   style-loader — импортирует CSS-файлы и внедряет стили в DOM.
   css-loader — позволяет работать с @import и url() внутри CSS.
