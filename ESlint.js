@@ -1,4 +1,12 @@
-https://www.youtube.com/watch?v=Yf1_uTwKVxA&list=PLNPYa2iDftMS63nrBzhb1QQDm0YVcSju-&index=8
+/*https://www.youtube.com/watch?v=Yf1_uTwKVxA&list=PLNPYa2iDftMS63nrBzhb1QQDm0YVcSju-&index=8
+
+
+Error: Failed to load parser 'babel-eslint' declared in '.eslintrc.js': => //npm install eslint@4.x babel-eslint@8 - g - 
+npx eslint -h//help
+npx eslint --fix file.js// исправить как можно больше проблем. Исправления вносятся в сами файлы, и выводятся только оставшиеся неисправленные проблемы.
+npm run lint
+npm run lint:fix
+
 1. npm init -y - создат файл packege.json
 
 2. npm install --save-dev eslint
@@ -65,3 +73,4 @@ node_modules
 
 #node-modules
 node_modules
+*/
