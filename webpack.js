@@ -1,5 +1,8 @@
 /*
-Установить все зависимости выполнив npm i - когда в другом месте скачала с гита.
+Установить все зависимости выполнив npm i - когда в другом месте скачала с гита. Не забудь перейти в папку с проэктом.
+Модули и package-lock можно удалять, ОСТАВИТЬ package.json. Если переносим проэкт. Потом просто запустить npm i (install),
+нода подкачает все необходимые зависимости, для указанных в package.json модулях
+
 
 Настройка Webpack - https://habr.com/ru/amp/publications/701724/
 Webpack: руководство для начинающих - https://habr.com/ru/articles/514838/
@@ -148,16 +151,16 @@ PLUGIN Чтобы добавить новый плагин в сборку, ну
   npm install --save-dev html-webpack-plugin - автосборка html
   npm install -D clean-webpack-plugin - очищать прошлые сборки
 
-  В INDEX.JS ПОДКЛЮЧАЕМ ПЛАГИН
-  const { HtmlWebpackPlugin } = require('html-webpack-plugin')
-  const { СleanWebpackPlugin } = require('clean-webpack-plugin')
+  В webpack.config.js ПОДКЛЮЧАЕМ ПЛАГИН
+  const HtmlWebpackPlugin = require('html-webpack-plugin');
 
   module.exports = {
-    plugins: [
-      new HtmlWebpackPlugin({
-      template: './src/index.html'// будет брать шаблонный index.html и в него подключать все скрипты и положет его в папку dist
+    new HtmlWebpackPlugin({
+      title: 'Nonogram',
+      filename: 'index.html',
+      template: path.join(__dirname, 'src', 'template.html'),// будет брать шаблонный index.html и в него подключать все скрипты и положет его в папку dist    
     }),
-    new CleanWebpackPlugin()
+
   ],
     
   }

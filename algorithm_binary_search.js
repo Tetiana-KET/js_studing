@@ -3,7 +3,7 @@
 //Линеарифметический — O(n*log2 n)
 //Квадратичный — O(n 2) во второй степени n*n
 
-//АЛГОРИТМЫ СОРТИРОВКИ
+
  
 //сортировка выбором 0(n*n) чуть меньше, тут еще есть коэфициэнт, но он не указывается при оценке.
 {
@@ -27,7 +27,19 @@
   }
   console.log(selectionSort(arr));
 }
-
+/*
+const selectedSort = arr => {
+	for (let i = 0; i < arr.length; i++) {
+		let min = i;
+		for (let j = i + 1; j < arr.length; j++) {
+			if (arr[min] > arr[j]) {
+				min = j; // Меняем значение переменной на наибольшее значение
+			}
+		}
+		[arr[i], arr[min]] = [arr[min], arr[i]]; // Меняем значения переменных
+	}
+};
+*/
 
 //Пузырьковая сортировка самый не эффективный, сложность 0(n*n) 
 
@@ -35,22 +47,15 @@
  const arr = [5, 4, 9, 2, 14, 7, 1, -6, 3, -1, 8, 10, 11, -3, 98, -9, 20, 6, 15, 54, 0];
 
   function bubbleSort(arr) {
-
     for (let i = 0; i < arr.length; i++) {
-
 			for (let j = i + 1; j < arr.length; j++) {
-
 				if (arr[j] < arr[i]) {
           [arr[j], arr[i]] = [arr[i], arr[j]];
-					// let temp = arr[j];
-					// arr[j] = arr[i];
-					// arr[i] = temp;
 				}
 			}
 		}
     return arr;
   }
-  console.log(bubbleSort(arr));
 }
 
 /*Быстрая сортировка или сортировка Хоара  O(log2n*n) 
@@ -77,28 +82,22 @@
     let less = [],
     greater = [],
     p = arr[0];
-
     for (let i = 1; i < arr.length; i++) {
       if (arr[i] < p) less.push(arr[i]);
       else greater.push(arr[i]);
     }
     return quickSort(less).concat(p, quickSort(greater));
   }
-  console.log(quickSort(arr))
 }
 {
   const arr = [5, 4, 23, 85, 7, 5, -6, 3, -1];
   function quickSort (arr) {
-    
     if (arr.length <=1) return arr;
-
     const pivot = arr[0];
     const less = arr.slice(1).filter((e)=> e < pivot);
     const more = arr.slice(1).filter((e)=> e > pivot);
-
     return quickSort(less).concat(pivot, quickSort(more));
   }
-  console.log(quickSort(arr));
 }
 
 
