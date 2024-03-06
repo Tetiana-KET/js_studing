@@ -211,3 +211,69 @@ var Cat = (function () {
 
 	return Cat;
 })();
+
+//redo/undo
+function undoRedo(object) {
+	const history = [];
+	const undoOperations = [];
+
+	return {
+		set: function (key, value) {
+			if (object.hasOwnProperty(key)) {
+				history.push(['edit', key, object[key], value]);
+			} else {
+				history.push(['set', key, value]);
+			}
+
+			object[key] = value;
+			undoOperations.length = 0;
+		},
+
+		get: function (key) {
+			return object[key];
+		},
+
+		del: function (key) {
+			if (key in object) {
+				history.push(['delete', key, object[key]]);
+
+				delete object[key];
+				undoOperations.length = 0;
+			}
+		},
+
+		undo: function () {
+			if (!history.length) {
+				throw new Error('No operation to redo');
+			}
+
+			const operationUndo = history.pop(); //['delete', key, object[key]]
+			const [type, key, oldValue] = operationUndo;
+
+			if (type === 'set') {
+				delete object[key];
+			} else if (type === 'edit' || type === 'delete') {
+				object[key] = oldValue;
+			}
+			undoOperations.push(operationUndo);
+		},
+
+		redo: function () {
+			if (!undoOperations.length) {
+				throw new Error('No operation to redo');
+			}
+
+			const operationToRedo = undoOperations.pop();
+			const [type, key, oldValue, value] = operationToRedo;
+
+			if (type === 'set') {
+				object[key] = oldValue;
+			} else if (type === 'edit') {
+				object[key] = value;
+			} else if (type === 'delete') {
+				delete object[key];
+			}
+			history.push(operationToRedo);
+		},
+	};
+}
